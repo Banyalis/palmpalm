@@ -1,0 +1,171 @@
+@import "~front/static-url";
+
+// Same values used in scale script inside base.jinja
+$desktop: "(min-width: 1440px)";
+$tablet: "(min-width: 768px) and (max-width: 1439px)";
+$phone: "(max-width: 767px)";
+
+$ease-in-quad: "cubic-bezier(0.55, 0.085, 0.68, 0.53)";
+$ease-in-cubic: "cubic-bezier(0.55, 0.055, 0.675, 0.19)";
+$ease-in-quart: "cubic-bezier(0.895, 0.03, 0.685, 0.22)";
+$ease-in-quint: "cubic-bezier(0.755, 0.05, 0.855, 0.06)";
+$ease-in-expo: "cubic-bezier(0.95, 0.05, 0.795, 0.035)";
+$ease-in-circ: "cubic-bezier(0.6, 0.04, 0.98, 0.335)";
+$ease-out-quad: "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+$ease-out-cubic: "cubic-bezier(0.215, 0.61, 0.355, 1)";
+$ease-out-quart: "cubic-bezier(0.165, 0.84, 0.44, 1)";
+$ease-out-quint: "cubic-bezier(0.23, 1, 0.32, 1)";
+$ease-out-expo: "cubic-bezier(0.19, 1, 0.22, 1)";
+$ease-out-circ: "cubic-bezier(0.075, 0.82, 0.165, 1)";
+$ease-in-out-quad: "cubic-bezier(0.455, 0.03, 0.515, 0.955)";
+$ease-in-out-cubic: "cubic-bezier(0.645, 0.045, 0.355, 1)";
+$ease-in-out-quart: "cubic-bezier(0.77, 0, 0.175, 1)";
+$ease-in-out-quint: "cubic-bezier(0.86, 0, 0.07, 1)";
+$ease-in-out-expo: "cubic-bezier(1, 0, 0, 1)";
+$ease-in-out-circ: "cubic-bezier(0.785, 0.135, 0.15, 0.86)";
+
+// Colors & gradient
+$c-color-white: #ffffff;
+$c-color-black: #000000;
+$c-color-purple: #b6b4c1;
+$c-color-primary: #161148;
+$c-color-secondary: #f3805e;
+$c-color-tertiary: #29bfb9;
+
+$c-gradient-primary: linear-gradient(0deg, #f3805e 0.04%, #fcc690 44%, #d4c79a 60.98%, #7cc9b0 93.95%);
+$c-gradient-green: linear-gradient(16.15deg, #ceebe4 28.75%, #9fd1c5 111.42%);
+$c-gradient-green--lighten: linear-gradient(16.15deg, #ecf7f4 28.75%, #e6e8e3 111.42%);
+$c-gradient-yellow: linear-gradient(16.15deg, #f2e8cb 28.75%, #fbdd8c 111.42%);
+$c-gradient-yellow--lighten: linear-gradient(16.15deg, #faf6ea 28.75%, #faeecd 111.42%);
+$c-gradient-orange: linear-gradient(16.15deg, #f5e9e1 28.75%, #f0c7ad 111.42%);
+$c-gradient-orange--lighten: linear-gradient(16.15deg, #faf4f0 28.75%, #f5ddce 111.42%);
+
+// Easing
+$c-ease-primary: .2s ease-in-out;
+$c-ease-secondary: cubic-bezier(0.16, 1, 0.3, 1);
+$c-ease-animate: .8s cubic-bezier(.19, 1, .22, 1);
+
+//$layout: layout used for calculation: desktop, tablet, phone
+//$columns: desired block width in columns
+//$gaps: number of gaps which should be added to width, common case is 0 or 2 (used mainly for centered items when we need width with adjusent gaps included)
+//$alignSide: block alignment: left, center (alignColumn and alignColumnSide is ignored) and right
+//$alignColumn: index of column align to (in case of right block alignment indexes, nevertheless, goes as for left alignment, from left to right, as goes in specification), but index can be explicitly set negative, to specify counting from right to left
+//$alignColumnSide: side of the column align to: left, center, right (no matter left or right block alignment used)
+@mixin toGrid($layout, $columns, $gaps, $alignSide, $alignColumn: 0, $alignColumnSide: left, $position: relative) {
+    $columnsGrid: 12;
+    $gutter: 40px;
+
+    @if $layout == desktop_homepage {
+        $columnsGrid: 12;
+        $gutter: 40px;
+    }
+
+    @if $layout == desktop_product {
+        $columnsGrid: 12;
+        $gutter: 10px;
+    }
+
+    @if $layout == desktop {
+        $columnsGrid: 12;
+        $gutter: 20px;
+    }
+
+    @if $layout == tablet {
+        $columnsGrid: 12;
+        $gutter: 12px;
+    }
+
+    @if $layout == phone {
+        $columnsGrid: 6;
+        $gutter: 11px;
+    }
+
+    @if $columns > 0 {
+        @include toGridCustomAttribute($layout, $columns, $gaps, 'width');
+    }
+
+    //shorthand for centered block (so no need for specifying $alignColumn and $alignColumnSide)
+    @if $alignSide == center {
+        // may be made another way: simply set margin: 0 auto, but i decided to just tune variables to calculate center
+        // $alignColumn: ($columnsGrid - $columns) / 2 + 1;
+        // $alignColumnSide: left;
+        @if $position == relative {
+            margin-left: auto; //will not work if block is wider than container, but previous version (commented above) gots to complicated after $gaps param added
+            margin-right: auto;
+        } @else {
+            //TODO
+        }
+    } @else {
+        //negative alignColumn means count from the end
+        @if $alignColumn < 0 {
+            $alignColumn: $columnsGrid + $alignColumn + 1;
+        }
+
+        @if $alignSide == left {
+            $colN: $alignColumn;
+            $tmp: nth([1, 0.5, 0], index([left, center, right], $alignColumnSide));
+            $res: calc((100% - #{$gutter} * (#{$columnsGrid} - 1)) * (#{$colN} - #{$tmp}) / #{$columnsGrid} + #{$gutter} * (#{$colN} - 1));
+            @if $position == relative {
+                margin-left: $res;
+            } @else {
+                left: $res;
+            }
+        }
+
+        @if $alignSide == right {
+            $colN: $columnsGrid - $alignColumn + 1;
+            $tmp: nth([0, 0.5, 1], index([left, center, right], $alignColumnSide));
+            $res: calc((100% - #{$gutter} * (#{$columnsGrid} - 1)) * (#{$colN} - #{$tmp}) / #{$columnsGrid} + #{$gutter} * (#{$colN} - 1));
+
+            @if $position == relative {
+                right: $res;
+                margin-right: 0; //using right to shift, because if block goes beyond left boundary it stops when using margin-right
+                margin-left: auto;
+            } @else {
+                right: $res;
+            }
+        }
+    }
+}
+
+//$layout: layout used for calculation: desktop, tablet, phone
+//$columns: desired block width in columns
+//$gaps: number of gaps which should be added to width, common case is 0 or 2 (used mainly for centered items when we need width with adjusent gaps included)
+//$attribute: attribute to be set resulted value
+@mixin toGridCustomAttribute($layout, $columns, $gaps, $attribute) {
+    $columnsGrid: 12;
+    $gutter: 20px;
+
+    @if $layout == desktop_homepage {
+        $columnsGrid: 12;
+        $gutter: 40px;
+    }
+
+    @if $layout == desktop_product {
+        $columnsGrid: 12;
+        $gutter: 10px;
+    }
+
+    @if $layout == desktop {
+        $columnsGrid: 12;
+        $gutter: 20px;
+    }
+
+    @if $layout == tablet {
+        $columnsGrid: 12;
+        $gutter: 12px;
+    }
+
+    @if $layout == phone {
+        $columnsGrid: 6;
+        $gutter: 11px;
+    }
+
+    $guttersBetweenColumnsWidth: $gutter * ($columns - 1);
+
+    @if $columns == 0 {
+        $guttersBetweenColumnsWidth: 0px;
+    }
+
+    #{$attribute}: calc((100% - #{$gutter} * (#{$columnsGrid} - 1)) * #{$columns} / #{$columnsGrid} + #{$guttersBetweenColumnsWidth} + #{$gutter} * #{$gaps});
+}

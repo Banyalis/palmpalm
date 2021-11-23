@@ -1,0 +1,12 @@
+@import "const";
+@import "utils";
+
+.Content {
+    $root:&;
+
+    width: 100%;
+
+    &-body {
+        width: 100%;
+    }
+}

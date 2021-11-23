@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta content="width=device-width, user-scalable=1" name="viewport"/>
+
+    <title>PalmPalm CMS{% block title %}{% endblock %}</title>
+
+    {% block static %}
+        <link type="text/css" href="{{ static(bundle('cms', 'cms', 'main.css')) }}" rel="stylesheet">
+    {% endblock %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.22.1/css/medium-editor.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.22.1/css/themes/beagle.css" rel="stylesheet">
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+{#<img style="display:none" alt="" src="{{ static('svg/cms/symbol/svg/sprite.symbol.svg') }}">#}
+
+<div id="app"></div>
+
+<script>
+    {% block data %}
+        window.app = {
+            data: {% if data %}{{ data|jsonify|safe }}{% else %}{}{% endif %},
+            settings: {
+                domain: '{{ DOMAIN }}',
+                mediaUrl: '{{ MEDIA_URL }}',
+                staticUrl: '{{ STATIC_URL }}',
+                urls: {}
+            }
+        };
+    {% endblock %}
+</script>
+
+{% block bundle_scripts %}
+<script src="{{ static(bundle('cms', 'cms', 'main.js')) }}"></script>
+{% endblock %}
+</body>
+</html>

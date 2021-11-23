@@ -1,0 +1,99 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% from 'front/components/Common/CommonInput/CommonInput.jinja' import CommonInput %}
+
+{% macro CheckoutCard(data={}) %}
+    <div class="CheckoutCard">
+        <div class="CheckoutCard-choice">
+            <div class="CheckoutCard-choiceInner">
+                <button class="CheckoutCard-choiceButton c-button-primary"><span>{{ data.button }}</span></button>
+                <p class="CheckoutCard-choiceText">{{ data.text }}</p>
+            </div>
+        </div>
+        <div class="CheckoutCard-data">
+            <div class="CheckoutCard-dataHeader">
+                <div class="CheckoutCard-dataTitle">{{ data.dataTitle }}</div>
+                <button class="CheckoutCard-dataClose">
+                    {% call macros.svgSprite("i-cross") %}{% endcall %}
+                </button>
+            </div>
+            <form action="" class="CheckoutCard-dataForm">
+                {% if data.state != 'logged' %}
+                    <div class="CheckoutCard-dataFormSection">
+                        <div class="CheckoutCard-dataFormSectionHeader">
+                            <div class="CheckoutCard-dataFormSectionTitle">{{ data.personalTitle }}</div>
+                            <div class="CheckoutCard-dataLogin">
+                                <div class="CheckoutCard-dataLoginTitle">{{ data.loginTitle }}</div>
+                                <a href="{{ data.loginButtonUrl }}" class="CheckoutCard-dataLoginButton">{{ data.loginButtonTitle }}</a>
+                            </div>
+                        </div>
+                        {{ CommonInput(data.formEmail) }}
+                    </div>
+                {% else %}
+                    <div class="CheckoutCard-dataUser">
+                        <div class="CheckoutCard-dataUserPanel">
+                            <div class="CheckoutCard-dataUserName">{{ data.userName }}</div>
+                            <button class="CheckoutCard-dataUserButton">{{ data.userButton }}</button>
+                        </div>
+                        <div class="CheckoutCard-dataUserEmail">{{ data.userEmail }}</div>
+                    </div>
+                {% endif %}
+                <div class="CheckoutCard-dataFormSection">
+                    <div class="CheckoutCard-dataFormSectionHeader">
+                        {% if data.state != 'logged' %}
+                            <div class="CheckoutCard-dataFormSectionTitle">{{ data.addressTitle }}</div>
+                        {% else %}
+                            <div class="CheckoutCard-dataFormSectionTitle">{{ data.shipTitle }}</div>
+                        {% endif %}
+                    </div>
+                    {{ CommonInput(data.formZip) }}
+                    <div class="CheckoutCard-dataFormSectionUser">
+                        {{ CommonInput(data.formFirstName) }}
+                        {{ CommonInput(data.formLastName) }}
+                    </div>
+                    {{ CommonInput(data.formCompany) }}
+                    <div class="CheckoutCard-dataFormSectionAddress">
+                        {{ CommonInput(data.formStreetAddress) }}
+                        {{ CommonInput(data.formApt) }}
+                        {{ CommonInput(data.formZip) }}
+                        {{ CommonInput(data.formZip) }}
+                        {{ CommonInput(data.formPhone) }}
+                    </div>
+                    <div class="c-checkbox">
+                        <input class="c-checkbox-input" id="remember" type="checkbox" checked>
+                        <label class="c-checkbox-label" for="remember">
+                            {% call macros.svgSprite("i-check") %}{% endcall %}
+                        </label>
+                        <div class="c-checkbox-caption">{{ data.checkboxCaption }}</div>
+                    </div>
+                </div>
+                <div class="CheckoutCard-dataFormSection">
+                    <div class="CheckoutCard-dataFormSectionHeader">
+                        <div class="CheckoutCard-dataFormSectionTitle">{{ data.cardTitle }}</div>
+                    </div>
+                    {% if data.state != 'logged' %}
+                        <div class="CheckoutCard-dataFormSectionCard">
+                            {{ CommonInput(data.formCardNumber) }}
+                            {{ CommonInput(data.formCardDate) }}
+                            {{ CommonInput(data.formCardCVC) }}
+                        </div>
+                    {% else %}
+                        <p>1</p>
+                    {% endif %}
+                </div>
+                <div class="CheckoutCard-dataFormSection CheckoutCard-dataFormSection--billing">
+                    <div class="CheckoutCard-dataFormSectionHeader">
+                        <div class="CheckoutCard-dataFormSectionTitle">{{ data.billingAddressTitle }}</div>
+                    </div>
+                    <div class="CheckoutCard-dataFormSectionAddress">
+                        {{ CommonInput(data.formStreetAddress) }}
+                        {{ CommonInput(data.formApt) }}
+                        {{ CommonInput(data.formZip) }}
+                        {{ CommonInput(data.formZip) }}
+                        {{ CommonInput(data.formPhone) }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> 
+{% endmacro %}

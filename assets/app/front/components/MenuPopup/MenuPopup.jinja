@@ -1,0 +1,25 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% from 'front/components/Common/CommonSocial/CommonSocial.jinja' import CommonSocial %}
+
+<div class="MenuPopup">
+    <div class="MenuPopup-wrapper">
+        <div class="MenuPopup-inner">
+            <nav class="MenuPopup-nav">
+                {% for item in header.nav %}
+                    <div class="MenuPopup-navItemWrapper">
+                        <a href="{{ item.url }}" class="MenuPopup-navItem">{{ item.title }}</a>
+                    </div>
+                {% endfor %}
+            </nav>
+            <div class="MenuPopup-info">
+                <div class="MenuPopup-links">
+                    {% for item in header.links %}
+                        <a href="{{ item.url }}" class="MenuPopup-linksItem">{{ item.title }}</a>
+                    {% endfor %}
+                </div>
+                {{ CommonSocial(social) }}
+            </div>
+        </div>
+    </div>
+</div>

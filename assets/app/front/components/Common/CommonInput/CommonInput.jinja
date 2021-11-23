@@ -1,0 +1,13 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro CommonInput(data={}, mods={}) %}
+    <div class="CommonInput">
+        <label>{{ data }}</label>
+        <input type="{% if mods['password'] %}password{% else %}text{% endif %}">
+        {% if mods['password'] %}
+            <div class="CommonInput-passwordButton">
+                {% call macros.svgSprite("i-eye") %}{% endcall %}
+            </div>
+        {% endif %}
+    </div>
+{% endmacro %}

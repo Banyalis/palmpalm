@@ -1,0 +1,101 @@
+@import "const";
+@import "utils";
+
+.CheckoutPayment {
+    $root:&;
+
+    margin-bottom: 24px;
+
+    &-title {
+        margin-bottom: 33px;
+        font-size: 20px;
+        line-height: 29px;
+        letter-spacing: -.6px;
+        font-weight: bold;
+        font-family: "GT America";
+
+        @media #{$tablet}, #{$phone} {
+            font-size: 16px;
+            line-height: 23px;
+        }
+
+        @media #{$tablet} {
+            margin-bottom: 17px;
+        }
+    
+        @media #{$phone} {
+            margin-bottom: 22px;
+            letter-spacing: -1px;
+        }
+    }
+
+    &-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 0 4px;
+
+        @media #{$phone} {
+            grid-template-columns: 1fr;
+            grid-gap: 24px 0;
+            padding: 32px 20px;
+            background-color: $c-color-white;
+        }
+
+        &Item {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 280px;
+            padding: 0 20px 32px;
+            background-color: $c-color-white;
+
+            @media #{$tablet} {
+                height: 192px;
+                padding: 0 12px 20px;
+            }
+
+            @media #{$phone} {
+                align-items: center;
+                height: auto;
+                padding: 0;
+                background-color: transparent;
+            }
+
+            &--PayPal #{$root}-listItemButton {
+                background-color: #fec349;
+            }
+
+            &--Amazon #{$root}-listItemButton {
+                border-color: #b79036;
+                background: linear-gradient(180deg, #ffe7ae 0%, #f4c653 100%);
+            }
+
+            &--Apple #{$root}-listItemButton {
+                background-color: $c-color-black;
+            }
+
+            &Button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 48px;
+                border: 1px solid transparent;
+                border-radius: 12px;
+                transition: opacity $c-ease-primary;
+
+                .isDesktop &:hover {
+                    opacity: .9;
+                }
+
+                @media #{$phone} {
+                    max-width: 303px;
+                }
+            }
+
+            svg {
+                display: none;
+            }
+        }
+    }
+}

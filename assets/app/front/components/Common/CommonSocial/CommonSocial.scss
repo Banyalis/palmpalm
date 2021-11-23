@@ -1,0 +1,99 @@
+@import "const";
+@import "utils";
+
+.CommonSocial {
+    $root:&;
+
+    display: flex;
+
+
+    &.shown {
+
+    }
+
+    &--hero.shown &-item {
+        visibility: inherit;
+        opacity: 1;
+    }
+
+    &--hero.shown &-item:nth-child(1) {
+        transition: 1s opacity #{$ease-out-expo} 533ms, 1s visibility step-start 533ms;
+    }
+
+    &--hero.shown &-item:nth-child(2) {
+        transition: 1s opacity #{$ease-out-expo} 603ms, 1s visibility step-start 603ms;
+    }
+
+    &--hero.shown &-item:nth-child(3) {
+        transition: 1s opacity #{$ease-out-expo} 673ms, 1s visibility step-start 673ms;
+    }
+
+    &--hero.shown &-item:nth-child(4) {
+        transition: 1s opacity #{$ease-out-expo} 743ms, 1s visibility step-start 743ms;
+    }
+
+    &--hero &-item {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    &--footer {
+        display: inline-flex;
+        margin: 26px 0 127px;
+
+        @media #{$tablet} {
+            margin: 26px 0 67px;
+        }
+
+        @media #{$phone} {
+            margin: 37px 0 55px;
+        }
+    }
+
+    &-item {
+        width: 30px;
+        height: 30px;
+
+        &:not(:last-child) {
+            margin-right: 12px;
+        }
+
+        &:first-child svg {
+            fill: #3b5998;
+
+            .isDesktop &:hover {
+                fill: #314b80;
+            }
+        }
+
+        &:nth-child(2) svg {
+            fill: #55acee;
+
+            .isDesktop &:hover {
+                fill: #4c99d4;
+            }
+        }
+
+        &:nth-child(3) svg {
+            fill: #007ab9;
+
+            .isDesktop &:hover {
+                fill: #00689e;
+            }
+        }
+
+        &:last-child svg {
+            fill: #dc3075;
+
+            .isDesktop &:hover {
+                fill: #cc2d6c;
+            }
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            transition: fill $c-ease-primary;
+        }
+    }
+}

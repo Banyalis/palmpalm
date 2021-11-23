@@ -1,0 +1,23 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro IndexFaq(data={}) %}
+    <div class="IndexFaq grid-container isInitialState" data-scroll="normal" data-scroll-offset="100">
+        <div class="IndexFaq-title">{{ data.title }}</div>
+        <div class="IndexFaq-inner">
+            <div></div>
+            <div class="IndexFaq-list isInitialState" data-scroll="normal" data-scroll-offset="0">
+                {% for item in data.list %}
+                    <div class="IndexFaq-listItem">
+                        <div class="IndexFaq-listItemHeader">
+                            {% call macros.svgSprite("i-arrow") %}{% endcall %}
+                            <div class="IndexFaq-listItemQuestion">{{ item.question }}</div>
+                        </div>
+                        <div class="IndexFaq-listItemInner">
+                            <div class="IndexFaq-listItemAnswer">{{ item.answer }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endmacro %}

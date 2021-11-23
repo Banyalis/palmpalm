@@ -1,0 +1,23 @@
+@import "const";
+
+@mixin setDelay($i: 0, $time) {
+    &:nth-child(#{$i}) {
+        $delay: $i * $time;
+
+        transition-delay: 0 + $delay;
+    }
+
+    @if $i < 10 {
+        @include setDelay($i + 1, $time);
+    }
+}
+
+@mixin elementAnimation($x: 0, $y: 40px, $z: 0) {
+    opacity: 0;
+    transform: translate3d($x, $y, $z);
+    will-change: opacity, transform;
+}
+
+@mixin elementAnimationEasing($duration: 1s, $easing: #{$ease-out-expo}, $delay: 0s) {
+    transition: opacity $duration $easing $delay, transform $duration $easing $delay;
+}

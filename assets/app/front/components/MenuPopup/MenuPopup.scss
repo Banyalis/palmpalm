@@ -1,0 +1,218 @@
+@import "const";
+@import "utils";
+
+@mixin setDelay($i: 0) {
+    &:nth-child(#{$i}) {
+        $delay: $i * .1s;
+
+        transition-delay: 0 + $delay;
+    }
+
+    @if $i < 10 {
+        @include setDelay($i + 1);
+    }
+}
+
+.MenuPopup {
+    $root:&;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($c-color-white, .4);
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $c-ease-animate, visibility $c-ease-animate;
+
+    &.isShow {
+        will-change: opacity;
+        opacity: 1;
+        visibility: visible;
+
+        #{$root} {
+            &-navItemWrapper {
+                will-change: opacity, transform;
+                opacity: 1;
+                transform: translateX(0);
+
+                @include setDelay();
+            }
+
+            &-links {
+                will-change: opacity, transform;
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: .6s;
+            }
+        }
+
+        .CommonSocial {
+            will-change: opacity, transform;
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: .7s;
+        }
+    }
+
+    &-wrapper {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+
+        @media #{$phone} {
+            left: 0;
+        }
+
+        &:before, &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        &:before {
+            background: linear-gradient(90deg, rgba($c-color-white, 0) 0%, rgba($c-color-white, .5) 20%, $c-color-white 30%, $c-color-white 100%);
+
+            @media #{$phone} {
+                background: $c-color-white;
+            }
+        }
+
+        &:after {
+            width: 1140px;
+            height: 920px;
+            background: linear-gradient(180deg, #aeeee5 -14.51%, #f5e8c7 51.93%, #eda579 118.37%);
+            filter: blur(200px);
+            transform: rotate(-130deg);
+
+            @media #{$tablet}, #{$phone} {
+                top: 50%;
+                background: linear-gradient(189.11deg, #aeeee5 -7.66%, #f5e8c7 51.76%, #eda579 111.18%);
+                filter: blur(150px);
+            }
+
+            @media #{$tablet} {
+                left: 100px;
+                width: 700px;
+                height: 1500px;
+                margin-top: -750px;
+                transform: rotate(180deg);
+            }
+
+            @media #{$phone} {
+                left: 50%;
+                width: 720px;
+                height: 1000px;
+                margin: -500px 0 0 -360px;
+                transform: rotate(-160deg);
+            }
+        }
+    }
+
+    &-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 120px 82px 80px 300px;
+        position: relative;
+        z-index: 10;
+
+        @media #{$tablet} {
+            padding: 172px 83px 53px 250px;
+        }
+
+        @media #{$phone} {
+            padding: 128px 0 32px 16px;
+        }
+    }
+
+    &-nav {
+        display: flex;
+        flex-direction: column;
+
+        &Item {
+            color: $c-color-primary;
+            font-size: 40px;
+            line-height: 48px;
+            letter-spacing: -2px;
+            font-weight: bold;
+            font-family: "GT America";
+            transition: color $c-ease-primary;
+
+            @media #{$tablet}, #{$phone} {
+                letter-spacing: -1px;
+            }
+
+            @media #{$tablet} {
+                font-size: 32px;
+                line-height: 37px;
+            }
+
+            @media #{$phone} {
+                font-size: 24px;
+                line-height: 29px;
+            }
+
+            .isDesktop &:hover {
+                color: $c-color-secondary;
+            }
+
+            &Wrapper {
+                opacity: 0;
+                transform: translateX(30px);
+                transition: opacity $c-ease-animate, transform $c-ease-animate;
+
+                &:not(:last-child) {
+                    margin-bottom: 32px;
+                }
+            }
+        }
+    }
+
+    &-links {
+        display: flex;
+        margin-bottom: 24px;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity $c-ease-animate, transform $c-ease-animate;
+
+        &Item {
+            color: rgba($c-color-primary, .4);
+            font-size: 18px;
+            line-height: 27px;
+            font-weight: 500;
+            transition: color $c-ease-primary;
+
+            @media #{$tablet}, #{$phone} {
+                letter-spacing: -.4px;
+            }
+
+            @media #{$phone} {
+                font-size: 16px;
+                line-height: 24px;
+            }
+
+            &:not(:last-child) {
+                margin-right: 25px;
+            }
+
+            .isDesktop &:hover {
+                color: $c-color-secondary;
+            }
+        }
+    }
+
+    .CommonSocial {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity $c-ease-animate, transform $c-ease-animate;
+    }
+}

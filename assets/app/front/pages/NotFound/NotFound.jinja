@@ -1,0 +1,20 @@
+{% extends 'front/pages/Section/Section.jinja' %}
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% block title %}{{ super() }}: 404{% endblock %}
+
+{% block body_class %} Page404 {% endblock %}
+
+{% block content %}
+    <main class="Section NotFound">
+
+        <div class="NotFound-content NeedFixOnPopup">
+            <h1></h1>
+        </div>
+
+        <div class="Section-content">
+            {% block section_content %}
+            {% endblock %}
+        </div>
+    </main>
+{% endblock %}

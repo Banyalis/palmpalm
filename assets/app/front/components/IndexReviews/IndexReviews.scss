@@ -1,0 +1,338 @@
+@import "const";
+@import "utils";
+
+.IndexReviews {
+    $root:&;
+
+    padding: 101px 0 148px;
+
+    @media #{$tablet} {
+        padding: 184px 0 85px;
+    }
+
+    @media #{$phone} {
+        padding: 160px 0 67px;
+    }
+    
+    &-title {
+        margin-bottom: 196px;
+        font-size: 80px;
+        line-height: 80px;
+        letter-spacing: -3.2px;
+        text-align: center;
+        font-weight: bold;
+        font-family: "GT America";
+
+        @media #{$tablet}, #{$phone} {
+            letter-spacing: -2px;
+        }
+
+        @media #{$tablet} {
+            margin-bottom: 137px;
+            font-size: 52px;
+            line-height: 52px;
+        }
+
+        @media #{$phone} {
+            font-size: 42px;
+            line-height: 50px;
+        }
+    }
+
+    &-slider {
+        position: relative;
+        cursor: none;
+
+        @media (min-width: 2000px) {
+            width: 1600px - 260px;
+            margin: 0 auto;
+        }
+        
+        &Circle {
+            position: absolute;
+            top: -120px;
+            left: calc(50% + 120px);
+            width: 240px;
+            height: 240px;
+
+            text {
+                fill: $c-color-primary;
+                font-size: 60px;
+                letter-spacing: 5px;
+                font-weight: bold;
+            }
+        }
+
+        &Item {
+            width: 550px !important;
+            transition: transform 1s #{$ease-out-expo};
+
+            @media #{$tablet} {
+                width: 425px !important;
+            }
+
+            @media #{$phone} {
+                width: 310 * 100% / 375 !important;
+            }
+
+            &Inner {
+                position: relative;
+                overflow: hidden;
+                transform: scale(.7);
+                transition: transform 2s #{$ease-out-expo};
+            }
+
+            &.swiper-slide {
+                &-prev,
+                &-next {
+                    position: relative;
+                    z-index: 10;
+
+                    &.onHover #{$root}-sliderItemInner {
+                        transform: scale(.65);
+                    }
+                }
+
+                &-prev {
+                    @media (min-width: 1601px) and (max-width: 1999px) {
+                        transform: translateX(-15vw) !important;
+                    }
+
+                    @media (min-width: 1440px) and (max-width: 1600px) {
+                        transform: translateX(-5vw) !important;
+                    }
+                    
+                    @media (min-width: 1024px) and (max-width: 1439px) {
+                        transform: translateX(-10vw) !important;
+                    }
+
+                    @media (min-width: 768px) and (max-width: 1023px) {
+                        transform: translateX(-2vw) !important;
+                    }
+
+                    @media #{$phone} {
+                        transform: translateX(32 * 100% / 375) !important;
+                    }
+                }
+
+                &-next {
+                    @media (min-width: 1601px) and (max-width: 1999px) {
+                        transform: translateX(15vw) !important;
+                    }
+
+                    @media (min-width: 1440px) and (max-width: 1600px) {
+                        transform: translateX(5vw) !important;
+                    }
+
+                    @media (min-width: 1024px) and (max-width: 1439px) {
+                        transform: translateX(10vw) !important;
+                    }
+
+                    @media (min-width: 768px) and (max-width: 1023px) {
+                        transform: translateX(2vw) !important;
+                    }
+
+                    @media #{$phone} {
+                        transform: translateX(-32 * 100% / 375) !important;
+                    }
+                }
+
+                &-active #{$root}-sliderItem {
+                    &Inner {
+                        transform: scale(1);
+                    }
+
+                    &Content {
+                        opacity: 1;
+                        transition-delay: .3s; 
+                    }
+                }
+            }
+
+            &.toLeft {
+                @media (min-width: 1601px) and (max-width: 1999px) {
+                    transform: translateX(-15vw) !important;
+                }
+
+                @media (min-width: 1440px) and (max-width: 1600px) {
+                    transform: translateX(-5vw) !important;
+                }
+
+                @media (min-width: 1024px) and (max-width: 1439px) {
+                    transform: translateX(-10vw) !important;
+                }
+
+                @media (min-width: 768px) and (max-width: 1023px) {
+                    transform: translateX(-2vw) !important;
+                }
+
+                @media #{$phone} {
+                    transform: translateX(32 * 100% / 375) !important;
+                }
+            }
+
+            &.toRight {
+                @media (min-width: 1601px) and (max-width: 1999px) {
+                    transform: translateX(15vw) !important;
+                }
+
+                @media (min-width: 1440px) and (max-width: 1600px) {
+                    transform: translateX(5vw) !important;
+                }
+
+                @media (min-width: 1024px) and (max-width: 1439px) {
+                    transform: translateX(10vw) !important;
+                }
+
+                @media (min-width: 768px) and (max-width: 1023px) {
+                    transform: translateX(2vw) !important;
+                }
+
+                @media #{$phone} {
+                    transform: translateX(-32 * 100% / 375) !important;
+                }
+            }
+
+            &Image {
+                padding-top: 100% / (550 / 785);
+                position: relative;
+
+                @media #{$tablet} {
+                    padding-top: 100% / (425 / 610);
+                }
+
+                @media #{$phone} {
+                    padding-top: 100% / (310 / 440);
+                }
+
+                img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+
+            &Content {
+                position: absolute;
+                right: 35px;
+                bottom: 70px;
+                width: 295px;
+                color: $c-color-white;
+                opacity: 0;
+                transition: opacity 1s #{$ease-out-expo};
+
+                @media #{$phone} {
+                    left: 20px;
+                    right: 20px;
+                    bottom: 30px;
+                    width: auto;
+                }
+
+                &:before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    left: -70px;
+                    width: 360px;
+                    height: 330px;
+                    margin-top: -180px;
+                    background-color: #e99771;
+                    filter: blur(50px);
+
+                    @media #{$tablet} {
+                        left: -20px;
+                        width: 310px;
+                        height: 280px;
+                        margin-top: -140px;
+                    }
+
+                    @media #{$phone} {
+                        left: 0;
+                        width: 250px;
+                        height: 230px;
+                        margin-top: -125px;
+                    }
+                }
+
+                &Inner {
+                    position: relative;
+                }
+            }
+
+            &Text {
+                margin-bottom: 20px;
+                font-size: 18px;
+                line-height: 25px;
+                letter-spacing: -.5px;
+
+                @media #{$phone} {
+                    margin-bottom: 12px;
+                }
+            }
+
+            &Owner {
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: -.4px;
+                font-weight: bold;
+                font-family: "GT America";
+            }
+        }
+
+        &Area {
+            @media #{$tablet} {
+                display: none;
+            }
+
+            @media #{$phone} {
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+            }
+
+            &Prev,
+            &Next {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 50%;
+                z-index: 10;
+                outline: none;
+                font-size: 0;
+
+                @media #{$tablet}, #{$phone} {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 108px;
+                    height: 108px;
+                    border-radius: 100%;
+                    position: relative;
+                    background-color: $c-color-secondary;
+                    color: $c-color-white;
+                    font-size: 14px;
+                    line-height: 21px;
+                    letter-spacing: -.4px;
+                    font-family: "GT America";
+                }
+            }
+    
+            &Prev {
+                left: 0;
+                
+                @media #{$phone} {
+                    margin-right: 32px;
+                }
+            }
+    
+            &Next {
+                right: 0;
+            }
+        }
+    }
+}

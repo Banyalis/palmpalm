@@ -1,0 +1,179 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 9
+    },
+    "globals": {
+        "$": false,
+        "jQuery": false,
+        "_": false,
+        "Backbone": false,
+        "app": false,
+        "CustomEase": false
+    },
+    "rules": {
+        // best practices
+        "no-unexpected-multiline": "warn",
+        "comma-dangle": [
+            "warn",
+            "never"
+        ],
+        "no-array-constructor": "warn",
+        "no-new-object": "warn",
+        // variables
+        "one-var": [
+            "warn",
+            "never"
+        ],
+        //        "vars-on-top": "warn",
+
+        // types
+        "radix": [
+            "warn",
+            "always"
+        ],
+        // style
+        "no-tabs": "warn",
+        "brace-style": [
+            "warn",
+            "1tbs",
+            {
+                "allowSingleLine": false
+            }
+        ],
+        "space-before-blocks": "warn",
+        "keyword-spacing": [
+            "warn",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "space-before-function-paren": [
+            "warn",
+            {
+                "anonymous": "always",
+                "named": "never"
+            }
+        ],
+        "space-infix-ops": "warn",
+        "space-unary-ops": [
+            "warn",
+            {
+                "words": true,
+                "nonwords": false
+            }
+        ],
+        "newline-before-return": "warn",
+        "newline-per-chained-call": [
+            "warn",
+            {
+                "ignoreChainWithDepth": 2
+            }
+        ],
+        // client
+        "camelcase": [
+            "error",
+            {
+                "properties": "always"
+            }
+        ],
+        "curly": [
+            "error",
+            "all"
+        ],
+        "dot-notation": "error",
+        "eol-last": "error",
+        "eqeqeq": [
+            "error",
+            "allow-null"
+        ],
+        "guard-for-in": "error",
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1,
+                "ignoreComments": true
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "max-depth": [
+            "error",
+            7
+        ],
+        "max-len": [
+            "error",
+            120,
+            {
+                "ignoreTrailingComments": true,
+                "ignoreUrls": true,
+                "ignoreStrings": true
+            }
+        ],
+        "max-params": [
+            "error",
+            7
+        ],
+        "no-bitwise": "error",
+        "no-caller": "error",
+        "no-empty": "error",
+        "no-eq-null": "off",
+        "no-irregular-whitespace": "error",
+        "no-mixed-spaces-and-tabs": "error",
+        "no-multi-str": "error",
+        "no-nested-ternary": "error",
+        "no-new-func": "error",
+        "no-new-wrappers": "error",
+        "no-sequences": "error",
+        "no-trailing-spaces": "error",
+        "no-undef": "error",
+        "no-unused-expressions": [
+            "error",
+            {
+                "allowShortCircuit": true,
+                "allowTernary": true
+            }
+        ],
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "after-used"
+            }
+        ],
+        "no-use-before-define": [
+            "error",
+            "nofunc"
+        ],
+        "no-with": "error",
+        "padded-blocks": [
+            "error",
+            "never"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "strict": [
+            "error",
+            "safe"
+        ],
+        "wrap-iife": [
+            "error",
+            "inside"
+        ]
+    }
+}

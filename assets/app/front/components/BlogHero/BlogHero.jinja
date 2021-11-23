@@ -1,0 +1,41 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro BlogHero(data={}, mods={}) %}
+    <div class="BlogHero" data-scroll="normal" data-scroll-offset="0">
+        <div class="grid-container">
+            <div class="BlogHero-title">{{ data.title }}</div>
+            <div class="BlogHero-list">
+                <div class="BlogHero-listInner">
+                    {% for item in data.list %}
+                        <div class="BlogHero-listItem" data-id="{{ loop.index0 }}">
+                            <div class="BlogHero-listItemPosted">
+                                <div class="BlogHero-listItemPosted-date">{{ item.date }}</div>
+                                <div class="BlogHero-listItemPosted-post">{{ data.posted }} <a class="u-skipUrlParser" href="{{ item.postUrl }}">{{ item.post|safe }}</a>
+                                </div>
+                            </div>
+                            <a href="{{ item.url }}" class="BlogHero-listItemTitle u-skipUrlParser">{{ item.title|safe }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="BlogHero-listSlider swiper-container">
+                    <div class="swiper-wrapper">
+                        {% for item in data.list %}
+                            <div class="BlogHero-listSliderImage u-skipUrlParser swiper-slide" data-id="{{ loop.index0 }}">
+                                <picture>
+                                    <source srcset="{{ item.image }}, {{ item.image2x }} 2x">
+                                    <img src="{{ item.image }}" alt="">
+                                </picture>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="BlogHero-listSliderButtons">
+                        <div class="BlogHero-listSliderButtons-next swiper-button-next">
+                            {% call macros.svgSprite("i-arrow-right") %}{% endcall %}</div>
+                        <div class="BlogHero-listSliderButtons-prev swiper-button-prev">
+                            {% call macros.svgSprite("i-arrow-right") %}{% endcall %}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

@@ -1,0 +1,27 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro BlogArticleItem(data={}, article={}, mods={}) %}
+    <div class="BlogArticleItem grid-container" data-scroll="normal" data-scroll-offset="0">
+        <div class="BlogArticleItem-wrapper">
+            {% for item in article.list %}
+                {% if item.type == 'quoting' %}
+                    {{ item.quoting|safe }}
+                    {{ item.author|safe }}
+                    {{ item.degree|safe }}
+                {% endif %}
+                {% if item.title %}
+                    {{ item.title|safe }}
+                {% endif %}
+                {% if item.text %}
+                    {{ item.text|safe }}
+                {% endif %}
+                {% if item.image %}
+                    <picture>
+                        <source data-srcset="{{ item.image }}, {{ item.image2x }} 2x">
+                        <img data-lazy data-src="{{ item.image }}" alt="">
+                    </picture>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endmacro %}

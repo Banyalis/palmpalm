@@ -1,0 +1,56 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro CheckoutOrder(data={}) %}
+    <div class="CheckoutOrder">
+        <div class="CheckoutOrder-header">
+            <div class="CheckoutOrder-headerInner">
+                <div class="CheckoutOrder-title">{{ data.title }}</div>
+                <a href="/" class="CheckoutOrder-close">
+                    {% call macros.svgSprite("i-cross") %}{% endcall %}
+                </a>
+            </div>
+            <div class="CheckoutOrder-quantity">{{ data.quantity }} items</div>
+        </div>
+        <div class="CheckoutOrder-list">
+            {% for item in data.list %}
+                <div class="CheckoutOrder-listItem">
+                    <div class="CheckoutOrder-listItemImage">
+                        <picture>
+                            <source srcset="{{ item.image }}, {{ item.image2x }} 2x">
+                            <img src="{{ item.image }}" alt="">
+                        </picture>
+                    </div>
+                    <div class="CheckoutOrder-listItemInner">
+                        <a href="" class="CheckoutOrder-listItemTitle">{{ item.title }}</a>
+                        <div class="CheckoutOrder-listItemCaption">{{ item.caption }}</div>
+                        <div class="CheckoutOrder-listItemFooter">
+                            <div class="CheckoutOrder-listItemQuantity">x {{ item.quantity }}</div>
+                            <div class="CheckoutOrder-listItemPrice">{{ item.price }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="CheckoutOrder-footer">
+            <div class="CheckoutOrder-footerInner">
+                <div class="CheckoutOrder-info">
+                    {% for item in data.info %}
+                        <div class="CheckoutOrder-infoItem">
+                            <div class="CheckoutOrder-infoItemTitle">{{ item.title }}</div>
+                            {% if item.button %}
+                                <button class="CheckoutOrder-infoItemButton">{{ item.button }}</button>
+                            {% else %}
+                                <div class="CheckoutOrder-infoItemValue">{{ item.value }}</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="CheckoutOrder-price">
+                    <div class="CheckoutOrder-priceTitle">{{ data.priceTitle }}</div>
+                    <div class="CheckoutOrder-priceAmount">{{ data.priceAmount }}</div>
+                </div>
+            </div>
+            <button disabled class="CheckoutOrder-button c-button-primary"><span>{{ data.button }}</span></button>
+        </div>
+    </div>
+{% endmacro %}

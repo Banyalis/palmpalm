@@ -1,0 +1,17 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro IndexArticles(data=[]) %}
+    <div class="IndexArticles grid-container">
+        {% for item in data %}
+            <div class="IndexArticles-item isInitialState" data-shown="0" data-scroll="normal" data-scroll-offset="100">
+                <p class="IndexArticles-itemText">{{ item.text }}</p>
+                <div class="IndexArticles-itemFooter">
+                    <a href="{{ item.link.url }}" class="IndexArticles-itemLink">{{ item.link.title }}</a>
+                    <div class="IndexArticles-itemLogo">
+                        {% call macros.svgSprite("i-logo-" + item.logo) %}{% endcall %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endmacro %}

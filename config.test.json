@@ -1,0 +1,10 @@
+{
+  "DB_NAME": "palmpalm",
+  "DB_USER": "palmpalm",
+  "DB_PASSWORD": "bGd9mSrue6mac5Ha",
+  "DB_HOST": "127.0.0.1",
+  "DB_PORT": "3306",
+
+  "STATIC_URL": "/static/",
+  "MEDIA_URL": "/media/"
+}

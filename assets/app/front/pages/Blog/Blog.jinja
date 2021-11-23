@@ -1,0 +1,26 @@
+{% extends 'front/pages/Section/Section.jinja' %}
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% from 'front/components/BlogHero/BlogHero.jinja' import BlogHero %}
+{% from 'front/components/BlogCategories/BlogCategories.jinja' import BlogCategories %}
+{% from 'front/components/BlogNews/BlogNews.jinja' import BlogNews %}
+
+{% block title %}{{ data.OG.title }}{% endblock %}
+
+{% block body_class %}BlogPage{% endblock %}
+
+{% block content %}
+    <main class="Section Blog">
+        <div class="Section-content">
+            {% block section_content %}
+            {% endblock %}
+        </div>
+        <div class="Blog-content NeedFixOnPopup">
+            <div class="Blog-contentWrapper">
+                {{ BlogHero(data=data.hero) }}
+                {{ BlogCategories(data=data.categories) }}
+                {{ BlogNews(data=data.news, news=news) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

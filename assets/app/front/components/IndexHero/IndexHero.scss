@@ -1,0 +1,599 @@
+@import "const";
+@import "utils";
+
+.IndexHero {
+    $root:&;
+
+    position: relative;
+    color: $c-color-primary;
+
+    &-wrapper {
+        @media #{$desktop} {
+            padding-top: 195px;
+            padding-bottom: 216px;
+        }
+
+        @media #{$tablet} {
+            padding-top: 183px;
+            padding-bottom: 295px;
+        }
+
+        @media #{$phone} {
+            padding-top: 153px;
+        }
+    }
+
+
+    &-bottle-wrapper {
+        position: absolute;
+
+        visibility: hidden;
+        opacity: 0;
+
+        &.shown {
+            transition: 1s opacity #{$ease-out-expo} 0ms, 1s visibility step-start 0ms;
+            visibility: inherit;
+            opacity: 1;
+        }
+
+        @media #{$desktop} {
+            top: 37px;
+            @include toGrid(desktop-homepage, 6, 0, left, 2, left, absolute);
+        }
+
+        @media #{$tablet} {
+            margin-left: -6px;
+            top: 62px;
+            @include toGrid(tablet, 7, -1, left, 1, left, absolute);
+        }
+
+        @media #{$phone} {
+            top: 62px;
+            width: 312px;
+            right: 50%;
+        }
+    }
+
+    &-bottle-aspect {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-top: 100% * 1000 / 600;
+    }
+
+    &-bottle-gradient {
+        position: absolute;
+        left: 100% * -62 / 630;
+        top: 100% * -188 / 1050;
+        width: 100% * 722 / 630;
+        height: 100% * 722 / 1050;
+        transform: translate3d(0, 0, 0);
+        background: linear-gradient(180deg, #AEEEE5 -14.51%, #F5E8C7 51.93%, #EDA579 118.37%);
+        opacity: 0.3;
+        border-radius: 50%;
+
+        @media #{$desktop} {
+            filter: blur(100px);
+        }
+
+        @media #{$tablet} {
+            filter: blur(63.5px);
+        }
+
+        @media #{$phone} {
+            filter: blur(50px);
+        }
+    }
+
+    &.paused * {
+        animation: none !important;
+    }
+
+    &-order {
+        position: absolute;
+        user-select: none;
+
+        // visibility: hidden;
+        opacity: 0;
+        z-index: 3;
+
+        &.shown {
+            transition: 1s opacity #{$ease-out-expo} 700ms, 1s visibility step-start 700ms;
+            // visibility: inherit;
+            opacity: 1;
+
+            #{$root}-order-circle {
+                transform: scale(0.999);
+            }
+
+            #{$root}-order-pulse,
+            #{$root}-order-hole {
+                animation-play-state: running;
+            }
+        }
+
+        @media #{$desktop} {
+            top: 443px;
+            margin-left: 15px;
+            @include toGrid(desktop-homepage, 0, 0, left, 6, right, absolute);
+            width: 335px;
+        }
+
+        @media #{$tablet} {
+            top: 484px;
+            margin-left: 12px;
+            @include toGrid(tablet, 0, 0, left, 5, left, absolute);
+            width: 335px;
+        }
+
+        @media #{$phone} {
+            position: relative;
+            margin: -10px auto 0;
+            width: 268px;
+        }
+
+        &-aspect {
+            position: relative;
+            height: 0;
+            padding-top: 100%;
+            // background: rgba(255,0,0,0.3);
+            border-radius: 50%;
+            cursor: none;
+
+            .isDesktop &:hover {
+                #{$root}-order-blur {
+                    opacity: 0.65;
+                    transform: none;
+                }
+
+                #{$root}-order-circle {
+                    transform: scale(0.95);
+                }
+            }
+        }
+
+        &-wrapper {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+        }
+
+        &-pulse,
+        &-hole {
+            position: absolute;
+            $size: 164;
+            width: 100% * $size / 330;
+            height: 100% * $size / 330;
+            left: 50%;
+            top: 50%;
+            margin-left: -100% * $size / 330 / 2;
+            margin-top: -100% * $size / 330 / 2;
+        }
+
+        &-pulse {
+            animation: order_pulse #{$ease-out-expo} infinite 6s both paused 700ms;
+        }
+
+        @keyframes order_pulse {
+            0%  { opacity: 1; transform: scale(0); }
+            30% { transform: scale(1); }
+            60% { opacity: 0; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1); }
+        }
+
+        &-hole {
+            animation: order_pulse_hole #{$ease-out-expo} infinite 6s both paused 700ms;
+            background: white;
+            border-radius: 50%;
+        }
+
+        @keyframes order_pulse_hole {
+            0%  { opacity: 1; transform: scale(0); }
+            2%  { opacity: 1; transform: scale(0); }
+            40% { opacity: 1; transform: scale(1.01); }
+            54% { opacity: 1; transform: scale(1.01); }
+            100% { opacity: 0; transform: scale(1.01); }
+        }
+
+        &-blur {
+            position: absolute;
+            $size: 143;
+            width: 100% * $size / 330;
+            height: 100% * $size / 330;
+            left: 50%;
+            top: 50%;
+            margin-left: -100% * $size / 330 / 2;
+            margin-top: -100% * $size / 330 / 2;
+            opacity: 0;
+            transform: scale(0.95);
+            filter: blur(3px);
+            transition: all 1s #{$ease-out-expo};
+
+            // display: none;
+        }
+
+        &-circle {
+            position: absolute;
+            $size: 137;
+            width: 100% * $size / 330;
+            height: 100% * $size / 330;
+            left: 50%;
+            top: 50%;
+            margin-left: -100% * $size / 330 / 2;
+            margin-top: -100% * $size / 330 / 2;
+            transition: all 1s #{$ease-out-expo} 700ms;
+            transform: scale(0);
+            will-change: transform;
+
+            // display: none;
+        }
+
+        &-pulse,
+        &-blur,
+        &-circle {
+            span {
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+
+            span:nth-child(1) {
+                background: linear-gradient(0deg, #F3805E 0%, #FCC690 100%);
+                animation: order_gradients linear infinite 4.5s 0s;
+            }
+
+            span:nth-child(2) {
+                background: linear-gradient(0deg, #D4C79A 0%, #7CC9B0 100%);
+                animation: order_gradients linear infinite 4.5s 1.5s;
+            }
+
+            span:nth-child(3) {
+                background: linear-gradient(0deg, #FCC690 0%, #D4C79A 100%);
+                animation: order_gradients linear infinite 4.5s 3s;
+            }
+
+            @keyframes order_gradients {
+                0%    { opacity: 0; z-index: 3; }
+                33.3% { opacity: 1; z-index: 3; }
+
+                33.4% { opacity: 1; z-index: 2; }
+                66.7% { opacity: 1; z-index: 2; }
+
+                66.8% { opacity: 0; z-index: 1; }
+                100%  { opacity: 0; z-index: 1; }
+            }
+        }
+
+        &-text {
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+            left: 0;
+            width: 100%;
+            font-family: "GT America";
+            font-weight: 500;
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: -0.4px;
+            color: #FFFFFF;
+            z-index: 4;
+
+            @media #{$phone} {
+                margin-top: -9px;
+                font-size: 14px;
+            }
+        }
+    }
+
+
+    &-title.c-header-h1 {
+        position: relative;
+        z-index: 1;
+
+        div {
+            overflow: hidden;
+
+            @media #{$desktop} {
+                margin-top: -31px;
+            }
+
+            @media #{$tablet} {
+                margin-top: -27px;
+            }
+
+            @media #{$phone} {
+                margin-top: -0.25em;
+            }
+        }
+        span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%);
+            visibility: hidden;
+
+            @media #{$phone} {
+                white-space: nowrap;
+            }
+        }
+        div:nth-child(1) {
+            text-align: left;
+
+            span {
+                transition: 1s opacity #{$ease-out-expo} 166ms, 1s transform #{$ease-out-expo} 166ms, 1s visibility step-start 166ms;
+            }
+        }
+        div:nth-child(2) {
+            text-align: right;
+
+            span {
+                transition: 1s opacity #{$ease-out-expo} 236ms, 1s transform #{$ease-out-expo} 236ms, 1s visibility step-start 236ms;
+            }
+        }
+        div:nth-child(3) {
+            text-align: center;
+
+            span {
+                display: inline-block;
+                transition: 1s opacity #{$ease-out-expo} 306ms, 1s transform #{$ease-out-expo} 306ms, 1s visibility step-start 306ms;
+
+                @media #{$desktop} {
+                    margin-left: -6%;
+                }
+
+                @media #{$tablet} {
+                    margin-left: -21%;
+                }
+
+                @media #{$phone} {
+                    margin-left: -25%;
+                }
+            }
+        }
+
+        &.shown span {
+            opacity: 1;
+            transform: none;
+            visibility: inherit;
+        }
+
+        @media #{$desktop} {
+            width: 872px;
+            margin: 0 auto;
+        }
+
+        @media #{$tablet} {
+            width: 586px;
+            margin: 0 auto;
+            left: -6px;
+        }
+
+        @media #{$phone} {
+            width: calc(100% + 16px);
+            left: calc(-8px);
+            line-height: 1.25em;
+            font-size: 90px;
+
+            @media (max-width: 639px) {
+                font-size: calc(14.38vw - 2px);
+            }
+        }
+    }
+
+
+    &-text {
+        position: relative;
+        z-index: 5;
+        pointer-events: none;
+
+        visibility: hidden;
+
+        &.shown {
+            visibility: inherit;
+        }
+
+        @media #{$desktop} {
+            margin-top: 3px;
+
+            @include toGrid(desktop_homepage, 0, 0, left, 9, left, relative);
+            width: 330px;
+        }
+
+        @media #{$tablet} {
+            margin-top: 28px;
+
+            @include toGrid(tablet, 0, 0, left, 7, left, relative);
+            width: 300px;
+        }
+
+         @media #{$phone} {
+            margin-top: 41px;
+
+            @include toGrid(phone, 0, 0, left, 3, left, relative);
+            width: 225px;
+        }
+    }
+
+    &-left {
+        @media #{$desktop}, #{$tablet} {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 82px;
+        }
+
+        @media #{$phone} {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -100px;
+            margin-top: -40px;
+        }
+    }
+
+    &-logo {
+        position: relative;
+        width: 160px;
+        height: 160px;
+        flex: 0 0 160px;
+        margin-left: 6px;
+        z-index: 1;
+
+        visibility: hidden;
+        opacity: 0;
+
+        &.shown {
+            transition: 1s opacity #{$ease-out-expo} 533ms, 1s visibility step-start 533ms;
+            visibility: inherit;
+            opacity: 1;
+        }
+
+        @media #{$phone} {
+            margin-left: 0px;
+        }
+
+        svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+
+            &:last-child {
+                animation: rotation 20s infinite linear;
+
+                @keyframes rotation {
+                    0% {
+                        transform:rotate(0deg);
+                    }
+                    100% {
+                        transform:rotate(-360deg);
+                    }
+                }
+            }
+        }
+
+    }
+
+    &-contacts {
+        z-index: 1;
+
+        @media #{$desktop} {
+            position: fixed;
+            left: 40px;
+            bottom: 37px;
+        }
+
+        @media #{$tablet} {
+            position: absolute;
+            left: 25px;
+            bottom: 37px;
+        }
+
+        @media #{$phone} {
+            position: relative;
+            padding-top: 4px;
+            margin-left: -8px;
+        }
+
+        &.shown &-phone {
+            transition: 1s opacity #{$ease-out-expo} 533ms, 1s transform #{$ease-out-expo} 533ms, 1s visibility step-start 533ms;
+            visibility: inherit;
+            opacity: 1;
+            transform: none;
+        }
+
+        &.shown &-mail {
+            transition: 1s opacity #{$ease-out-expo} 603ms, 1s transform #{$ease-out-expo} 603ms, 1s visibility step-start 603ms;
+            visibility: inherit;
+            opacity: 1;
+            transform: none;
+        }
+
+        transition: 1s opacity #{$ease-out-expo};
+
+        @media #{$desktop}, #{$tablet} {
+            &.hidden {
+                pointer-events: none;
+                opacity: 0;
+            }
+        }
+
+        &-phone,
+        &-mail {
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        a {
+            font-weight: 500;
+            letter-spacing: -1px;
+            font-size: 20px;
+            line-height: 24px;
+            color: $c-color-primary;
+
+            @media #{$tablet}, #{$phone} {
+                font-size: 18px;
+                line-height: 24px;
+            }
+
+            .isDesktop & {
+                transition: color $c-ease-primary;
+            }
+
+            .isDesktop &:hover,
+            .isNotDesktop &:active {
+                color: $c-color-secondary;
+            }
+        }
+    }
+
+    &-right {
+        z-index: 1;
+
+        @media #{$desktop} {
+            position: fixed;
+            right: 40px;
+            bottom: 40px;
+        }
+
+        @media #{$tablet} {
+            position: fixed;
+            right: 13px;
+            bottom: 38px;
+        }
+
+        @media #{$phone} {
+            margin-top: 24px;
+        }
+
+
+        .CommonSocial {
+            transition: 1s opacity #{$ease-out-expo};
+
+            @media #{$phone} {
+                justify-content: center;
+            }
+
+            @media #{$desktop}, #{$tablet} {
+                &.hidden {
+                    pointer-events: none;
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+}

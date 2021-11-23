@@ -1,0 +1,11 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro CommonSocial(data=[], mods=[]) %}
+    <div class="CommonSocial{% for mod in mods %} CommonSocial--{{ mod }}{% endfor %}">
+        {% for item in data %}
+            <a href="{{ item.url }}" target="_blank" class="CommonSocial-item">
+                {% call macros.svgSprite("i-" + item.icon) %}{% endcall %}
+            </a>
+        {% endfor %}
+    </div>
+{% endmacro %}

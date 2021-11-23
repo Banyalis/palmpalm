@@ -1,0 +1,27 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% from 'front/components/Common/CommonCursor/CommonCursor.jinja' import CommonCursor %}
+
+{% macro IndexNews(data={}) %}
+    <div class="IndexNews grid-container isInitialState" data-scroll="throttled" data-scroll-offset="100">
+        <div class="IndexNews-title">{{ data.title }}</div>
+        <div class="IndexNews-list">
+            {% for item in data.list %}
+                <a href="{{ item.url }}" class="IndexNews-listItem isInitialState" data-shown="0" data-scroll="normal" data-scroll-offset="100">
+                    <div class="IndexNews-listItemImage">
+                        <picture>
+                            <source data-lazy data-srcset="{{ item.image }}, {{ item.image2x }} 2x">
+                            <img data-lazy data-src="{{ item.image }}" alt="">
+                        </picture>
+                    </div>
+                    <div class="IndexNews-listItemContent">
+                        <div class="IndexNews-listItemDate">{{ item.date }}</div>
+                        <div class="IndexNews-listItemTitle">{{ item.title }}</div>
+                        <p class="IndexNews-listItemText">{{ item.text }}</p>
+                    </div>
+                    {{ CommonCursor(data.cursor) }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endmacro %}

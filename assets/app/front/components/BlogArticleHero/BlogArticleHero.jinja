@@ -1,0 +1,25 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro BlogArticleHero(data={}, article={}, mods={}) %}
+    <div class="BlogArticleHero" data-scroll="normal" data-scroll-offset="0">
+        <div class="grid-container">
+            <a href="{{ data.url }}" class="BlogArticleHero-close">{{ data.back }}</a>
+            <div class="BlogArticleHero-wrapper">
+                <div class="BlogArticleHero-inner">
+                    <div class="BlogArticleHero-posted">
+                        <div class="BlogArticleHero-postedDate">{{ article.date }}</div>
+                        <div class="BlogArticleHero-postedPost">{{ data.posted }} <a class="u-skipUrlParser" href="{{ article.postUrl }}">{{ article.post|safe }}</a>
+                        </div>
+                    </div>
+                    <div class="BlogArticleHero-title">{{ article.title|safe }}</div>
+                </div>
+                <div class="BlogArticleHero-image">
+                    <picture>
+                        <source srcset="{{ article.image }}, {{ article.image2x }} 2x">
+                        <img src="{{ article.image }}" alt="">
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

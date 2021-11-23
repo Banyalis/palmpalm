@@ -1,0 +1,284 @@
+@import "const";
+@import "utils";
+
+@mixin c-local-text() {
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: -0.5px;
+    color: $c-color-primary;
+
+    @media #{$tablet} {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    @media #{$phone} {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+.BlogCategories {
+    $root: &;
+
+    position: relative;
+    color: $c-color-primary;
+    margin-bottom: 152px;
+
+    &-list {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(525px, 1fr));
+        grid-row-gap: 180px;
+        grid-column-gap: 130px;
+
+        &:before {
+            content: ' ';
+            position: absolute;
+            bottom: 220px;
+            left: 80px;
+            width: 1113px;
+            height: 1042px;
+            background: linear-gradient(0deg, #F3805E 0.04%, #FCC690 44%, #D4C79A 60.98%, #7CC9B0 93.95%);
+            transform: rotate(135deg);
+            opacity: 0.2;
+            border-radius: 50%;
+            filter: blur(70px);
+            z-index: 10;
+
+            @media #{$tablet} {
+                display: none;
+            }
+
+            @media #{$phone} {
+                top: 360px;
+                bottom: auto;
+                left: -70px;
+                width: 514px;
+                height: 481px;
+                filter: blur(35px);
+            }
+        }
+
+        @media #{$tablet} {
+            grid-template-columns: repeat(auto-fit, minmax(354px, 1fr));
+            grid-row-gap: 54px;
+            grid-column-gap: 12px;
+        }
+
+        @media #{$phone} {
+            grid-template-columns: repeat(1, 1fr);
+            grid-row-gap: 40px;
+            grid-column-gap: 0;
+        }
+
+        &Item {
+            position: relative;
+            grid-row-end: span 3;
+            z-index: 11;
+
+            &.medium {
+                grid-row-end: span 4;
+            }
+
+            &.large {
+                display: grid;
+                grid-row-end: span 5;
+
+                #{$root}-listItemTitle {
+                    position: absolute;
+                    top: 30px;
+                    left: 30px;
+
+                    @media #{$tablet}, #{$phone} {
+                        top: 20px;
+                        left: 20px;
+                    }
+                }
+            }
+
+            .isDesktop &:hover {
+                #{$root}-listItemImage {
+                    filter: drop-shadow(0 4px 40px rgba(22, 17, 72, 0.16));
+                }
+
+                #{$root}-listItemTitle {
+                    color: $c-color-secondary;
+                }
+            }
+
+            &Image {
+                position: relative;
+                display: block;
+                margin-bottom: 20px;
+                transition: filter $c-ease-primary;
+
+                img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                &-type {
+                    position: absolute;
+                    top: 20px;
+                    left: 20px;
+                    width: 124px;
+                    height: 124px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: $c-color-white;
+                    opacity: .75;
+                    border-radius: 50%;
+                    backdrop-filter: blur(4px);
+                    z-index: 5;
+
+                    @media #{$tablet} {
+                        width: 102px;
+                        height: 102px;
+                    }
+
+                    @media #{$phone} {
+                        width: 80px;
+                        height: 80px;
+                    }
+
+                    span {
+                        @include c-local-text();
+
+                        color: #2B3141;
+                    }
+                }
+
+                &.small {
+                    padding-top: 100% * 325 / 525;
+
+                    @media #{$tablet} {
+                        padding-top: 100% * 249 / 354;
+                    }
+
+                    @media #{$phone} {
+                        padding-top: 100% * 220 / 343;
+                    }
+                }
+
+                &.medium {
+                    padding-top: 100% * 500 / 525;
+
+                    @media #{$tablet} {
+                        padding-top: 100% * 351 / 354;
+                    }
+
+                    @media #{$phone} {
+                        padding-top: 100% * 220 / 343;
+                    }
+                }
+
+                &.large {
+                    padding-top: 100% * 800 / 525;
+                    margin-bottom: 0;
+
+                    @media #{$tablet} {
+                        padding-top: 100% * 510 / 354;
+                    }
+
+                    @media #{$phone} {
+                        padding-top: 100% * 510 / 343;
+                    }
+                }
+            }
+
+            &Inner {
+                display: flex;
+                margin-bottom: 10px;
+            }
+
+            &Date {
+                @include c-local-text();
+
+                margin-right: 16px;
+
+                @media #{$tablet}, #{$phone} {
+                    margin-right: 10px;
+                }
+            }
+
+            &Post {
+                @include c-local-text();
+
+                span {
+                    color: $c-color-secondary;
+                    text-decoration: none;
+                    transition: opacity $c-ease-primary;
+                }
+            }
+
+            &Title {
+                font-size: 28px;
+                color: $c-color-primary;
+                font-weight: bold;
+                font-family: "GT America";
+                transition: color $c-ease-primary;
+
+                @media #{$tablet}, #{$phone} {
+                    font-size: 20px;
+                }
+            }
+
+            &-logo {
+                position: absolute;
+                bottom: 25px;
+                right: 25px;
+                width: 129px;
+                height: 129px;
+                flex: 0 0 129px;
+                z-index: 1;
+
+                @media #{$tablet} {
+                    width: 91px;
+                    height: 91px;
+                    flex: 0 0 91px;
+                }
+
+                @media #{$phone} {
+                    bottom: 20px;
+                    right: 20px;
+                    width: 91px;
+                    height: 91px;
+                    flex: 0 0 91px;
+                }
+
+                svg {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+
+                    &:first-child {
+                        transform: scale(1.5);
+                    }
+
+                    &:last-child {
+                        animation: rotation 20s infinite linear;
+
+                        @keyframes rotation {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

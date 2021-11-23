@@ -1,0 +1,27 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro ProductsPopup(data={}) %}
+    <div class="ProductsPopup">
+        <div class="ProductsPopup-inner">
+            {% for category in data.categories %}
+                <div class="ProductsPopup-menu">
+                    {% for item in category.list %}
+                        {% if item.url %}
+                            <a href="{{ item.url }}" class="ProductsPopup-menuItem" data-image="{{ item.image }}" data-image2x="{{ item.image2x }}">{{ item.title }}</a>
+                        {% else %}
+                            <div class="ProductsPopup-menuTitle">{{ item.title }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="ProductsPopup-image">
+                <div class="ProductsPopup-imageInner">
+                    <picture>
+                        <source srcset="{{ static('img/products/popup/1.png') }}, {{ static('img/products/popup/1@2x.png') }} 2x">
+                        <img src="{{ static('img/products/popup/1.png') }}" alt="">
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

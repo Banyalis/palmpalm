@@ -1,0 +1,21 @@
+@import "const";
+@import "utils";
+
+.BasePopup {
+    $root:&;
+
+    &.isShow {
+        .LoginPopup, .CartPopup {
+            will-change: opacity;
+            opacity: 1;
+            visibility: visible;
+    
+            &-inner {
+                will-change: opacity, transform;
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(0);
+            }
+        }
+    }
+}

@@ -1,0 +1,81 @@
+@import "const";
+@import "utils";
+
+.CommonCursor {
+    $root:&;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 140px;
+    margin: -70px 0 0 -70px;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity .5s #{$ease-out-expo};
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 100%;
+        background-color: $c-color-secondary;
+        transform: scale(.9);
+        transition: transform 1s #{$ease-out-quad};
+    }
+
+    &.isShow {
+        opacity: 1;
+
+        &:before {
+            transform: scale(1);
+        }
+    }
+
+    &.isPressed:before {
+        transform: scale(.85);
+    }
+
+    &.isPrev #{$root}-prev,
+    &.isNext #{$root}-next  {
+        display: block;
+    }
+
+    &[style*="display: block"] {
+        display: flex !important;
+    }
+
+    &-inner {
+        position: relative;
+        color: $c-color-white;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -.4px;
+        font-weight: 500;
+        font-family: "GT America";
+    }
+
+    &-prev,
+    &-next {
+        display: none;
+    }
+
+    &--reviews {
+        width: 108px;
+        height: 108px;
+        margin: -54px 0 0 -54px;
+
+        #{$root}-inner {
+            font-size: 14px;
+            line-height: 21px;
+        }
+    }
+}

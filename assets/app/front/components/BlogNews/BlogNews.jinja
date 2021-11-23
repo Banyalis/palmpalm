@@ -1,0 +1,23 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro BlogNews(data={}, news=[], mods={}) %}
+    <div class="BlogNews" data-scroll="normal" data-scroll-offset="0">
+        <div class="BlogNews-wrapper grid-container">
+            <div class="BlogNews-title">{{ data.title }}</div>
+            <div class="BlogNews-list">
+                {% for item in news %}
+                    <a href="{{ item.url }}" class="BlogNews-listItem u-skipUrlParser">
+                        <div class="BlogNews-listItemInner">
+                            <div class="BlogNews-listItemDate">{{ item.date }}</div>
+                            <div class="BlogNews-listItemPost">{{ data.posted }} <span>{{ item.post|safe }}</span></div>
+                        </div>
+                        <div class="BlogNews-listItemTitle">{{ item.title|safe }}</div>
+                    </a>
+                {% endfor %}
+            </div>
+            {% if data.button %}
+                <button class="BlogNews-button c-button-round">{{ data.button|safe }}</button>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}

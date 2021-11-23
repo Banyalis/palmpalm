@@ -1,0 +1,13 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro CommonInputNumber(mods=[]) %}
+    <div class="CommonInputNumber{% for mod in mods %} CommonInputNumber--{{ mod }}{% endfor %}">
+        <button class="CommonInputNumber-decrement">
+            {% call macros.svgSprite("i-minus") %}{% endcall %}
+        </button>
+        <input type="text" class="CommonInputNumber-value" value="1" readonly>
+        <button class="CommonInputNumber-increment">
+            {% call macros.svgSprite("i-plus") %}{% endcall %}
+        </button>
+    </div>
+{% endmacro %}

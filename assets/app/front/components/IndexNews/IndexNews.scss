@@ -1,0 +1,241 @@
+@import "const";
+@import "utils";
+
+.IndexNews {
+    $root:&;
+
+    padding: 196px 0 190px;
+    position: relative;
+
+    @media #{$tablet} {
+        padding: 164px 0 86px;
+    }
+
+    @media #{$phone} {
+        padding: 196px 0 90px;
+    }
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 500px;
+        left: 0;
+        width: 1040px;
+        height: 1040px;
+        background: linear-gradient(180deg, #aeeee5 -14.51%, #f5e8c7 51.93%, #eda579 118.37%);
+        z-index: -1;
+        opacity: .3;
+        filter: blur(100px);
+        transform: rotate(50deg);
+
+        @media #{$tablet}, #{$phone} {
+            display: none;
+        }
+    }
+
+    &.isInitialState #{$root}-title {
+        @include elementAnimation();
+    }
+
+    &-title {
+        @include elementAnimationEasing();
+
+        font-size: 62px;
+        line-height: 72px;
+        letter-spacing: -2.5px;
+        text-align: center;
+        font-weight: bold;
+        font-family: "GT America";
+
+        @media #{$tablet}, #{$phone} {
+            letter-spacing: -2px;
+        }
+
+        @media #{$tablet} {
+            font-size: 52px;
+            line-height: 52px;
+        }
+
+        @media #{$phone} {
+            font-size: 42px;
+            line-height: 50px;
+        }
+    }
+    
+    &-list {
+        margin-top: 105px;
+
+        @media #{$tablet} {
+            margin-top: 98px;
+        }
+
+        @media #{$phone} {
+            margin-top: 63px;
+        }
+
+        &Item {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-gap: 0 40px;
+            align-items: center;
+            margin-bottom: 100px;
+            position: relative;
+            cursor: none;
+
+            @media #{$tablet} {
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 0 12px;
+                margin-bottom: 98px;
+            }
+
+            @media #{$phone} {
+                grid-template-columns: repeat(1, 1fr);
+                grid-gap: 24px 0;
+                margin-bottom: 40px;
+            }
+
+            &:nth-child(even) #{$root}-listItem {
+                &Image {
+                    @media #{$desktop}, #{$tablet} {
+                        order: 2;
+                    }
+
+                    @media #{$desktop} {
+                        grid-column: 7 / span 6;
+                    }
+                }
+
+                &Content {
+                    @media #{$desktop}, #{$tablet} {
+                        order: 1;
+                        margin-left: 0;
+                        text-align: left;
+                    }
+
+                    @media #{$desktop} {
+                        grid-column: 1 / span 5;
+                    }
+                }
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &.isInitialState #{$root}-listItem {
+                &Image {
+                    opacity: 0;
+                }
+
+                &Date,
+                &Title,
+                &Text {
+                    @include elementAnimation();
+                }
+            }
+
+            &Image {
+                @include elementAnimationEasing();
+
+                padding-top: (576 / 620) * 100%;
+                position: relative;
+
+                @media #{$desktop} {
+                    grid-column: 1 / span 6;
+                }
+
+                @media #{$tablet} {
+                    padding-top: (354 / 329) * 100%;
+                }
+
+                @media #{$phone} {
+                    padding-top: (220 / 343) * 100%;
+                }
+
+                img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                &.disableTransform {
+                    transform: none !important;
+                }
+            }
+
+            &Content {
+                @media #{$desktop} {
+                    grid-column: 8 / span 5;
+                    margin-left: -40px;
+                }
+            }
+
+            &Date {
+                @include elementAnimationEasing();
+
+                color: $c-color-tertiary;
+                font-size: 18px;
+                line-height: 27px;
+                letter-spacing: -.4px;
+                font-weight: bold;
+                font-family: "GT America";
+
+                @media #{$tablet} {
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+
+                @media #{$phone} {
+                    font-size: 13px;
+                    line-height: 18px;
+                    letter-spacing: -.2px;
+                }
+            }
+
+            &Title {
+                @include elementAnimationEasing($delay: .07s);
+
+                display: inline-flex;
+                margin: 18px 0 22px;
+                color: $c-color-primary;
+                font-size: 40px;
+                line-height: 48px;
+                letter-spacing: -2px;
+                font-weight: bold;
+                font-family: "GT America";
+
+                @media #{$tablet} {
+                    margin: 18px 0 12px;
+                    font-size: 32px;
+                    line-height: 37px;
+                    letter-spacing: -1px;
+                }
+
+                @media #{$phone} {
+                    margin: 15px 0;
+                    font-size: 24px;
+                    line-height: 28px;
+                }
+            }
+
+            &Text {
+                @include elementAnimationEasing($delay: .14s);
+
+                color: $c-color-primary;
+                font-size: 20px;
+                line-height: 33px;
+                letter-spacing: -.5px;
+
+                @media #{$tablet}, #{$phone} {
+                    font-size: 18px;
+                    line-height: 25px;
+                }
+            }
+        }
+    }
+}

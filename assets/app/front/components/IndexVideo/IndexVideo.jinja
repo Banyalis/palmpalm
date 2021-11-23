@@ -1,0 +1,17 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+
+{% macro IndexVideo(data={}) %}
+    <div class="IndexVideo" data-scroll="throttled" data-scroll-offset="0">
+        <div class="IndexVideo-wrapper grid-container homepage">
+            <div class="IndexVideo-gradient"></div>
+            <div class="IndexVideo-video-wrapper">
+                <div class="IndexVideo-video-inner" data-scroll="throttled" data-scroll-offset="0">
+                    <video muted playsinline crossorigin loop poster="{{ data.video.poster }}" data-src-phone="{{ data.video.phone }}" data-src-tablet="{{ data.video.tablet }}"  data-src-desktop="{{ data.video.desktop }}"></video>
+                </div>
+                <h3 class="IndexVideo-title cloned c-header-h3">{{ data.title }}</h3>
+            </div>
+            <h3 class="IndexVideo-title c-header-h3" data-scroll="normal" data-scroll-offset="0">{{ data.title }}</h3>
+        </div>
+    </div>
+{% endmacro %}

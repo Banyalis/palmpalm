@@ -1,0 +1,82 @@
+@import "const";
+@import "utils";
+
+.CommonInput {
+    $root:&;
+
+    position: relative;
+
+    &:focus-within,
+    &.isUsed {
+        label {
+            top: -20px;
+            font-size: 12px;
+            line-height: 18px;
+        }
+    }
+
+    label {
+        position: absolute;
+        top: 0;
+        left: 18px;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        pointer-events: none;
+        color: rgba(#989fa9, .8);
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: -.5px;
+        transition: all .2s ease;
+    }
+
+    input {
+        width: 100%;
+        padding: 22px 16px 8px;
+        border: 2px solid rgba(#b2b2b2, .3);
+        border-radius: 10px;
+        outline: none;
+        color: $c-color-primary;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: -.5px;
+        transition: border-color $c-ease-primary;
+
+        &:focus {
+            border-color: $c-color-tertiary;
+        }
+
+        &[type="password"] {
+            letter-spacing: 2px;
+        }
+    }
+
+    &-passwordButton {
+        position: absolute;
+        top: 50%;
+        right: 19px;
+        cursor: pointer;
+        transform: translateY(-50%);
+
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+        }
+
+        .isDesktop &:hover svg {
+            fill: $c-color-tertiary;
+        }
+
+        svg {
+            width: 17px;
+            height: 8px;
+            fill: rgba(#212121, .3);
+            transition: fill $c-ease-primary;
+        }
+    }
+}

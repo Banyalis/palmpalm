@@ -1,0 +1,84 @@
+@import "const";
+
+//for fonts loader observer
+@font-face {
+    font-family: 'Matter SQ 400';
+    font-display: swap;
+    src:url($static_url + 'fonts/MatterSQTRIAL-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Matter SQ 500';
+    font-display: swap;
+    src:url($static_url + 'fonts/MatterSQTRIAL-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT America 400';
+    font-display: swap;
+    src:url($static_url + 'fonts/GT-America-Extended-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT America 500';
+    font-display: swap;
+    src:url($static_url + 'fonts/GT-America-Extended-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT America 700';
+    font-display: swap;
+    src:url($static_url + 'fonts/GT-America-Extended-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: 'Matter SQ';
+    font-display: swap;
+    src:url($static_url + 'fonts/MatterSQTRIAL-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Matter SQ';
+    font-display: swap;
+    src:url($static_url + 'fonts/MatterSQTRIAL-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT America';
+    font-display: swap;
+    src:url($static_url + 'fonts/GT-America-Extended-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT America';
+    font-display: swap;
+    src:url($static_url + 'fonts/GT-America-Extended-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT America';
+    font-display: swap;
+    src:url($static_url + 'fonts/GT-America-Extended-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}

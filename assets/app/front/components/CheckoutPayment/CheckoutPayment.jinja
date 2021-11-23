@@ -1,0 +1,17 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro CheckoutPayment(data={}) %}
+    <div class="CheckoutPayment"> 
+        <div class="CheckoutPayment-title">{{ data.title }}</div>
+        <div class="CheckoutPayment-list">
+            {% for item in data.list %}
+                <div class="CheckoutPayment-listItem CheckoutPayment-listItem--{{ item.type }}">
+                    {% call macros.svgSprite("i-" + item.icon + "-large") %}{% endcall %}
+                    <button class="CheckoutPayment-listItemButton">
+                        {% call macros.svgSprite("i-" + item.icon + "-small") %}{% endcall %}
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
+    </div> 
+{% endmacro %}

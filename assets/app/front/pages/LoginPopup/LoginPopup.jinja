@@ -1,0 +1,40 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% extends 'front/components/BasePopup/BasePopup.jinja' %}
+
+{% from 'front/components/Common/CommonInput/CommonInput.jinja' import CommonInput %}
+
+{% block popupContent %}
+    <div class="LoginPopup">
+        <div class="LoginPopup-inner">
+            <div class="LoginPopup-header">
+                <div class="LoginPopup-title">{{ login.title }}</div>
+                <button class="LoginPopup-close">
+                    {% call macros.svgSprite("i-cross") %}{% endcall %}
+                </button>
+            </div>
+            <div class="LoginPopup-form">
+                <div class="LoginPopup-formTitle">{{ login.formTitle }}</div>
+                <form action="" class="LoginPopup-formInner">
+                    {{ CommonInput(login.formEmail) }}
+                    {{ CommonInput(login.formPassword, mods={'password': true}) }}
+                    <div class="LoginPopup-formControl">
+                        <div class="c-checkbox">
+                            <input class="c-checkbox-input" id="remember" type="checkbox">
+                            <label class="c-checkbox-label" for="remember">
+                                {% call macros.svgSprite("i-check") %}{% endcall %}
+                            </label>
+                            <div class="c-checkbox-caption">Remember me</div>
+                        </div>
+                        <button class="LoginPopup-formControlButton">{{ login.controlButton }}</button>
+                    </div>
+                    <button class="LoginPopup-formButton c-button-primary"><span>{{ login.formButton }}</span></button>
+                </form>
+                <div class="LoginPopup-formPrompt">
+                    <div class="LoginPopup-formPromptTitle">{{ login.promptTitle }}</div>
+                    <a href="" class="LoginPopup-formPromptLink">{{ login.promptLink }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

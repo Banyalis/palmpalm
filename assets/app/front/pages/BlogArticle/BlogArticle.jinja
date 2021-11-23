@@ -1,0 +1,22 @@
+{% import 'front/utils/macros.jinja' as macros %}
+{% extends 'front/pages/Section/Section.jinja' %}
+
+{% from 'front/components/BlogArticleHero/BlogArticleHero.jinja' import BlogArticleHero %}
+{% from 'front/components/BlogArticleItem/BlogArticleItem.jinja' import BlogArticleItem %}
+{% from 'front/components/BlogNews/BlogNews.jinja' import BlogNews %}
+
+{% block content %}
+    <main class="Section BlogArticle">
+        <div class="Section-content">
+            {% block section_content %}
+            {% endblock %}
+        </div>
+        <div class="BlogArticle-content NeedFixOnPopup">
+            <div class="BlogArticle-contentWrapper">
+                {{ BlogArticleHero(data=data, article=article) }}
+                {{ BlogArticleItem(data=data, article=article) }}
+            </div>
+            {{ BlogNews(data=data.news, news=news) }}
+        </div>
+    </main>
+{% endblock %}

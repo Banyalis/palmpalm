@@ -1,0 +1,194 @@
+@import "const";
+@import "utils";
+
+@mixin c-local-title() {
+    font-size: 28px;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$tablet}, #{$phone} {
+        font-size: 20px;
+    }
+}
+
+@mixin c-local-text() {
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: -0.5px;
+    color: $c-color-primary;
+
+    @media #{$tablet} {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    @media #{$phone} {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+.BlogNews {
+    $root: &;
+
+    position: relative;
+    color: $c-color-primary;
+
+    &:before {
+        content: ' ';
+        position: absolute;
+        top: -50px;
+        left: 0;
+        right: 0;
+        height: 825px;
+        background: linear-gradient(-180deg, #F3805E 0.04%, #FCC690 44%, #D4C79A 60.98%, #7CC9B0 93.95%);
+        opacity: 0.4;
+        filter: blur(100px);
+        border-radius: 50%;
+
+        @media #{$tablet} {
+            top: -220px;
+            left: -90px;
+            right: -200px;
+            height: 1041px;
+            background: linear-gradient(135deg, #F3805E 0.04%, #FCC690 44%, #D4C79A 60.98%, #7CC9B0 93.95%);
+            opacity: 0.2;
+        }
+
+        @media #{$phone} {
+            top: -10px;
+            left: -35px;
+            right: -100px;
+            height: 645px;
+            background: linear-gradient(-75deg, #F3805E 0.04%, #FCC690 44%, #D4C79A 60.98%, #7CC9B0 93.95%);
+            filter: blur(40px);
+            transform: rotate(-135deg);
+        }
+    }
+
+    @media #{$phone} {
+        &:after {
+            content: ' ';
+            position: absolute;
+            bottom: -65px;
+            left: -15px;
+            right: -100px;
+            height: 513px;
+            background: linear-gradient(-75deg, #F3805E 0.04%, #FCC690 44%, #D4C79A 60.98%, #7CC9B0 93.95%);
+            opacity: 0.4;
+            border-radius: 50%;
+            filter: blur(50px);
+            transform: rotate(-135deg);
+        }
+    }
+
+    &-title {
+        @include c-local-title();
+
+        line-height: 41px;
+        padding-bottom: 59px;
+
+        @media #{$tablet} {
+            line-height: 28px;
+            padding-bottom: 51px;
+        }
+
+        @media #{$phone} {
+            line-height: 26px;
+            padding-bottom: 28px;
+        }
+    }
+
+    &-wrapper {
+        z-index: 10;
+
+        @media #{$tablet} {
+            margin-bottom: -55px !important;
+        }
+
+        @media #{$phone} {
+            margin-bottom: -35px !important;
+        }
+    }
+
+    &-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+        margin-bottom: 42px;
+
+        @media #{$phone} {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        &Item {
+            min-height: 287px;
+            background: $c-color-white;
+            padding: 40px;
+            transition: box-shadow $c-ease-primary;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            @media #{$tablet} {
+                min-height: 200px;
+                padding: 20px 20px 22px 20px;
+            }
+
+            @media #{$phone} {
+                min-height: 220px;
+                padding: 20px;
+            }
+
+            &Inner {
+                display: flex;
+            }
+
+            &Date {
+                @include c-local-text();
+
+                margin-right: 16px;
+
+                @media #{$tablet}, #{$phone} {
+                    margin-right: 10px;
+                }
+            }
+
+            &Post {
+                @include c-local-text();
+
+                span {
+                    color: $c-color-secondary;
+                    text-decoration: none;
+                    transition: opacity $c-ease-primary;
+                }
+            }
+
+            &Title {
+                @include c-local-title();
+
+                line-height: 39px;
+                letter-spacing: -1px;
+                color: $c-color-primary;
+                transition: color $c-ease-primary;
+
+                @media #{$tablet} {
+                    line-height: 28px;
+                }
+
+                @media  #{$phone} {
+                    line-height: 26px;
+                    letter-spacing: -.016em;
+                }
+            }
+
+            .isDesktop &:hover {
+                box-shadow: 0 4px 40px rgba(22, 17, 72, 0.16);
+
+                #{$root}-listItemTitle {
+                    color: $c-color-secondary;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% from 'front/components/IndexHeroBottle/IndexHeroBottle.jinja' import IndexHeroBottle %}
+{% from 'front/components/Common/CommonSocial/CommonSocial.jinja' import CommonSocial %}
+
+
+{% macro IndexHero(data={}, social={}) %}
+    <div class="IndexHero paused" data-scroll="normal" data-scroll-offset="0">
+        <div class="IndexHero-wrapper grid-container homepage">
+            <div class="IndexHero-bottle-wrapper">
+                <div class="IndexHero-bottle-aspect">
+                    <div class="IndexHero-bottle-gradient"></div>
+                    {{ IndexHeroBottle() }}
+                </div>
+            </div>
+            <h1 class="IndexHero-title c-header-h1">{{ data.title|safe }}</h1>
+            <p class="IndexHero-text c-body-text">{{ data.text|safe }}</p>
+            <div class="IndexHero-order">
+                <div class="IndexHero-order-aspect">
+                    <div class="IndexHero-order-wrapper">
+                        <div class="IndexHero-order-pulse"><span></span><span></span><span></span></div>
+                        <div class="IndexHero-order-hole"></div>
+                        <div class="IndexHero-order-blur"><span></span><span></span><span></span></div>
+                        <div class="IndexHero-order-circle"><span></span><span></span><span></span></div>
+                        <div class="IndexHero-order-text">{{ data.order.label }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="IndexHero-left">
+            <div class="IndexHero-logo">
+                {% call macros.svgSprite("hero-logo-bottle") %}{% endcall %}
+                {% call macros.svgSprite("hero-logo-text") %}{% endcall %}
+            </div>
+            <div class="IndexHero-contacts">
+                <div class="IndexHero-contacts-phone">
+                    <a class="c-body-text" href="{{ data.phone.url }}">{{ data.phone.label }}</a><br>
+                </div>
+                <div class="IndexHero-contacts-mail">
+                    <a class="c-body-text" href="{{ data.mail.url }}">{{ data.mail.label }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="IndexHero-right">
+            {{ CommonSocial(social, ['hero']) }}
+        </div>
+    </div>
+{% endmacro %}

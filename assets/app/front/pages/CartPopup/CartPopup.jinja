@@ -1,0 +1,78 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% extends 'front/components/BasePopup/BasePopup.jinja' %}
+
+{% from 'front/components/Common/CommonInputNumber/CommonInputNumber.jinja' import CommonInputNumber %}
+
+{% block popupContent %}
+    <div class="CartPopup">
+        <div class="CartPopup-inner">
+            <div class="CartPopup-header">
+                <div class="CartPopup-headerInner">
+                    <div class="CartPopup-title">{{ cart.title }}</div>
+                    <button class="CartPopup-close">
+                        {% call macros.svgSprite("i-cross") %}{% endcall %}
+                    </button>
+                </div>
+                {% if cart.list | length >= 1 %}
+                    <div class="CartPopup-quantity">{{ cart.quantity }} items</div>
+                {% endif %}
+            </div>
+            {% if cart.list | length >= 1 %}
+                <div class="CartPopup-list">
+                    {% for item in cart.list %}
+                        <div class="CartPopup-listItem">
+                            <div class="CartPopup-listItemImage">
+                                <picture>
+                                    <source srcset="{{ item.image }}, {{ item.image2x }} 2x">
+                                    <img src="{{ item.image }}" alt="">
+                                </picture>
+                            </div>
+                            <div class="CartPopup-listItemInner">
+                                <div class="CartPopup-listItemHeader">
+                                    <div class="CartPopup-listItemHeaderInner">
+                                        <a href="{{ item.url }}" class="CartPopup-listItemTitle">{{ item.title }}</a>
+                                        <button class="CartPopup-listItemRemove">
+                                            {% call macros.svgSprite("i-trash") %}{% endcall %}
+                                        </button>
+                                    </div>
+                                    <div class="CartPopup-listItemCaption">{{ item.caption }}</div>
+                                </div>
+                                <div class="CartPopup-listItemFooter">
+                                    {{ CommonInputNumber() }}
+                                    <div class="CartPopup-listItemPrice">{{ item.price }}</div>
+                                </div>
+                            </div>
+                            <div class="CartPopup-listItemUndo">
+                                <div class="CartPopup-listItemUndoTitle">{{ cart.undoTitle }}</div>
+                                <button class="CartPopup-listItemUndoButton">{{ cart.undoButton }}</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="CartPopup-alert">
+                    <div class="CartPopup-alertTitle">{{ cart.alertTitle }}</div>
+                </div>
+            {% endif %}
+            <div class="CartPopup-footer">
+                {% if cart.list | length >= 1 %}
+                    <div class="CartPopup-subtotal">
+                        <div class="CartPopup-subtotalTitle">{{ cart.subtotalTitle }}</div>
+                        <div class="CartPopup-subtotalAmount">{{ cart.subtotalAmount }}</div>
+                    </div>
+                    <button class="CartPopup-button c-button-primary"><span>{{ cart.button }}</span></button>
+                {% else %}
+                    <div class="CartPopup-paymentTitle">{{ cart.paymentTitle }}</div>
+                    <div class="CartPopup-paymentList">
+                        {% for item in cart.paymentList %}
+                            <div class="CartPopup-paymentListItem">
+                                {% call macros.svgSprite("i-" + item.icon) %}{% endcall %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

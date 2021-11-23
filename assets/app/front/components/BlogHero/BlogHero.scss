@@ -1,0 +1,326 @@
+@import "const";
+@import "utils";
+
+.BlogHero {
+    $root: &;
+
+    position: relative;
+    color: $c-color-primary;
+    padding-top: 154px;
+    padding-bottom: 147px;
+
+    @media #{$tablet} {
+        padding-top: 145px;
+    }
+
+    @media #{$phone} {
+        padding-top: 105px;
+    }
+
+    &:before {
+        content: ' ';
+        position: absolute;
+        top: -100px;
+        left: 30px;
+        right: 200px;
+        height: 1082px;
+        background: linear-gradient(135deg, #F3805E 0.04%, #FCC690 44%, #D4C79A 60.98%, #7CC9B0 93.95%);
+        opacity: 0.3;
+        border-radius: 50%;
+        filter: blur(60px);
+        z-index: 10;
+
+        @media #{$tablet} {
+            top: -50px;
+            left: 30px;
+            right: -100px;
+            height: 893px;
+            opacity: 0.3;
+        }
+
+        @media #{$phone} {
+            top: 60px;
+            left: -10px;
+            right: -100px;
+            height: 480px;
+            filter: blur(35px);
+            opacity: 0.4;
+        }
+    }
+
+    &-title {
+        position: relative;
+        font-size: 28px;
+        line-height: 39px;
+        font-weight: bold;
+        font-family: "GT America";
+        letter-spacing: -1px;
+        z-index: 11;
+
+        @media #{$tablet} {
+            font-size: 20px;
+            line-height: 28px;
+        }
+
+        @media #{$phone} {
+            font-size: 20px;
+            line-height: 26px;
+            letter-spacing: -0.016em;
+        }
+    }
+
+    &-list {
+        display: flex;
+        justify-content: space-between;
+
+        @media #{$tablet} {
+            flex-direction: column;
+        }
+
+        @media #{$phone} {
+            flex-direction: column;
+        }
+
+        &Inner {
+            padding-top: 179px;
+
+            @media #{$tablet}, #{$phone} {
+                order: 1;
+                padding-top: 0;
+            }
+        }
+
+        &Item {
+            position: relative;
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+            z-index: 11;
+
+            &Posted {
+                font-size: 18px;
+                line-height: 25px;
+                letter-spacing: -.5px;
+                display: flex;
+                margin-bottom: 24px;
+
+                @media #{$tablet} {
+                    font-size: 16px;
+                    line-height: 22px;
+                    margin-bottom: 10px;
+                }
+
+                @media #{$phone} {
+                    font-size: 14px;
+                    line-height: 20px;
+                    margin-bottom: 8px;
+                }
+
+                &-date {
+                    margin-right: 16px;
+
+                    @media #{$tablet} {
+                        margin-right: 12px;
+                    }
+
+                    @media #{$phone} {
+                        margin-right: 10px;
+                    }
+                }
+
+                &-post {
+                    a {
+                        color: $c-color-secondary;
+                        transition: opacity $c-ease-primary;
+
+                        .isDesktop &:hover {
+                            opacity: .7;
+                        }
+                    }
+                }
+            }
+
+            &Title {
+                display: block;
+                width: 600px;
+                min-height: 186px;
+                font-size: 62px;
+                line-height: 71px;
+                letter-spacing: -2px;
+                font-weight: bold;
+                font-family: "GT America";
+                color: $c-color-primary;
+                transition: color $c-ease-primary;
+                z-index: 11;
+
+                @media #{$tablet} {
+                    font-size: 52px;
+                    line-height: 62px;
+                }
+
+                @media #{$phone} {
+                    width: 299px;
+                    min-height: 120px;
+                    font-size: 32px;
+                    line-height: 40px;
+                }
+
+                .isDesktop &:hover {
+                    color: $c-color-secondary;
+                }
+            }
+
+            &.isShow {
+                display: block;
+            }
+
+            &.isAnimated {
+                opacity: 1;
+            }
+        }
+
+        &Slider {
+            position: relative;
+            margin-top: -40px;
+            padding-bottom: 40px;
+            z-index: 11;
+            pointer-events: none;
+            width: 510px;
+
+            @media #{$tablet} {
+                width: 435px;
+                margin-top: -17px;
+                padding-bottom: 58px;
+                order: 0;
+            }
+
+            @media #{$phone} {
+                width: 249px;
+                order: 0;
+                margin-top: 4px;
+            }
+
+            &.swiper-container {
+                margin-right: 0 !important;
+            }
+
+            &Image {
+                position: relative;
+
+                &:before {
+                    content: ' ';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    height: 510px;
+                    background: linear-gradient(-55deg, rgba(196, 196, 196, 0) 0%, rgba(249, 210, 157, 0.55) 43.98%, rgba(221, 120, 78, 0.7) 75.81%);
+                    opacity: 0.7;
+                    border-radius: 50%;
+                    z-index: 10;
+
+                    @media #{$tablet} {
+                        height: 435px;
+                    }
+
+                    @media #{$phone} {
+                        height: 249px;
+                    }
+                }
+
+                img {
+                    width: 510px;
+                    height: 510px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    object-position: center;
+
+                    @media #{$tablet} {
+                        width: 435px;
+                        height: 435px;
+                        float: right;
+                    }
+
+                    @media #{$phone} {
+                        width: 249px;
+                        height: 249px;
+                        float: right;
+                    }
+                }
+            }
+
+            &Buttons {
+                position: absolute;
+                bottom: 25px;
+                right: 280px;
+                display: flex;
+                z-index: 20;
+                pointer-events: all;
+                cursor: pointer;
+
+                @media #{$tablet} {
+                    right: 229px;
+                    bottom: 35px;
+                }
+
+                @media #{$phone} {
+                    right: 22px;
+                    bottom: 35px;
+                }
+
+                &-prev, &-next {
+                    position: relative;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: $c-color-white;
+                    outline: none;
+                    transition: background-color $c-ease-primary;
+
+                    @media #{$phone} {
+                        width: 37px;
+                        height: 37px;
+                    }
+
+                    .isDesktop &:hover {
+                        background-color: $c-color-secondary;
+
+                        svg {
+                            stroke: $c-color-white;
+                        }
+                    }
+
+                    svg {
+                        width: 8px;
+                        height: 15px;
+                        stroke: $c-color-primary;
+                        stroke-width: 1px;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                        transition: stroke $c-ease-primary;
+
+                        @media #{$phone} {
+                            width: 5px;
+                            height: 9px;
+                        }
+                    }
+                }
+
+                &-next {
+                    margin-right: 10px;
+
+                    @media #{$phone} {
+                        margin-right: 6px;
+                    }
+
+                    svg {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+    }
+}

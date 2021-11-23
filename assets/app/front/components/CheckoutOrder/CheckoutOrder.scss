@@ -1,0 +1,382 @@
+@import "const";
+@import "utils";
+
+$c-local-color-gray: #dee5f2;
+
+@mixin u-local-text--large() {
+    color: $c-color-primary;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: -.6px;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$tablet} {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    @media #{$phone} {
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: -.3px;
+    }
+}
+
+@mixin u-local-text--medium() {
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -.5px;
+    font-family: "GT America";
+
+    @media #{$tablet} {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    @media #{$phone} {
+        font-size: 16px;
+        line-height: 23px;
+        letter-spacing: -.4px;
+    }
+}
+
+@mixin u-local-text--small() {
+    color: #989fa9;
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: -.5px;
+
+    @media #{$tablet}, #{$phone} {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+.CheckoutOrder {
+    $root:&;
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 29px 40px;
+    background-color: $c-color-white;
+
+    @media #{$tablet} {
+        padding: 28px 24px 40px;
+    }
+
+    @media #{$phone} {
+        height: 730px;
+        padding: 22px 20px 40px;
+    }
+
+    &-header {
+        padding-bottom: 31px;
+        position: relative;
+
+        @media #{$tablet} {
+            padding-bottom: 25px;
+        }
+
+        @media #{$phone} {
+            padding-bottom: 14px;
+        }
+
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -20px;
+            height: 20px;
+            z-index: 10;
+            background: linear-gradient(180deg, rgba($c-color-white, 1) 0%, rgba($c-color-white, 1) 30%, rgba($c-color-white, 0) 100%);
+
+            @media #{$tablet}, #{$phone} {
+                bottom: -15px;
+                height: 15px;
+            }
+        }
+
+        &Inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &-title {
+        font-size: 28px;
+        line-height: 39px;
+        letter-spacing: -1px;
+        font-weight: bold;
+        font-family: "GT America";
+
+        @media #{$tablet} {
+            font-size: 24px;
+            line-height: 35px;
+        }
+
+        @media #{$phone} {
+            font-size: 20px;
+            line-height: 26px;
+            letter-spacing: -.3px;
+        }
+    }
+
+    &-close {
+        width: 24px;
+        height: 24px;
+
+        @media #{$tablet} {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media #{$phone} {
+            display: none;
+        }
+
+        .isDesktop &:hover svg {
+            stroke: $c-color-tertiary;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            stroke: $c-color-primary;
+            stroke-width: 2px;
+            stroke-linecap: round;
+            transition: stroke $c-ease-primary;
+        }
+    }
+
+    &-quantity {
+        @include u-local-text--small();
+    }
+
+    &-list {
+        flex: 1;
+        overflow-y: auto;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        &Item {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+
+            @media #{$tablet}, #{$phone} {
+                padding: 15px 0;
+            }
+
+            &:not(:last-child) {
+                border-bottom: 1px solid $c-local-color-gray;
+            }
+
+            &Image {
+                flex-shrink: 0;
+                width: 50px;
+                margin-right: 35px;
+                text-align: center;
+
+                @media #{$tablet}, #{$phone} {
+                    width: 35px;
+                    margin-right: 20px;
+                }
+
+                // img {
+                //     width: 100%;
+                // }
+            }
+
+            &Inner {
+                width: 100%;
+            }
+
+            &Title {
+                @include u-local-text--large();
+
+                display: inline-flex;
+                margin-bottom: 3px;
+                transition: color $c-ease-primary;
+
+                .isDesktop &:hover {
+                    color: $c-color-tertiary
+                }
+            }
+
+            &Caption {
+                @include u-local-text--small();
+
+                margin-bottom: 20px;
+
+                @media #{$tablet}, #{$phone} {
+                    margin-bottom: 15px;
+                }
+            }
+
+            &Footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            &Quantity {
+                @include u-local-text--medium();
+            }
+
+            &Price {
+                @include u-local-text--medium();
+            }
+        }
+    }
+
+    &-footer {
+        position: relative;
+
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            z-index: 10;
+            background: linear-gradient(0deg, rgba($c-color-white, 1) 0%, rgba($c-color-white, 1) 30%, rgba($c-color-white, 0) 100%);
+
+            @media #{$tablet}, #{$phone} {
+                top: -15px;
+                height: 15px;
+            }
+        }
+
+        &Inner {
+            padding-top: 20px;
+            border-top: 1px solid $c-local-color-gray;
+
+            @media #{$tablet} {
+                padding-top: 17px;
+            }
+        }
+    }
+
+    &-info {
+        margin-bottom: 12px;
+
+        @media #{$tablet} {
+            margin-bottom: 8px;
+        }
+
+        @media #{$phone} {
+            margin-bottom: 11px;
+        }
+
+        &Item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            line-height: 26px;
+            letter-spacing: -1px;
+            font-family: "GT America";
+
+            @media #{$tablet} {
+                font-size: 14px;
+                line-height: 20px;
+            }
+
+            @media #{$phone} {
+                font-size: 16px;
+                line-height: 23px;
+                letter-spacing: -.4px;
+            }
+
+            &:not(:first-child) {
+                margin-top: 6px;
+
+                @media #{$tablet} {
+                    margin-top: 8px;
+                }
+
+                @media #{$phone} {
+                    margin-top: 9px;
+                }
+            }
+
+            &Button {
+                color: $c-color-secondary;
+                font-size: 16px;
+                line-height: 23px;
+                font-weight: bold;
+                transition: color $c-ease-primary;
+
+                @media #{$tablet} {
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+
+                @media #{$phone} {
+                    font-size: 16px;
+                    line-height: 23px;
+                }    
+
+                .isDesktop &:hover {
+                    color: $c-color-tertiary;
+                }
+            }
+        }
+    }
+
+    &-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 22px;
+
+        @media #{$tablet} {
+            margin-bottom: 19px;
+        }
+
+        @media #{$phone} {
+            margin-bottom: 16px;
+        }
+
+        &Title {
+            @include u-local-text--large();
+        }
+
+        &Amount {
+            font-size: 28px;
+            line-height: 41px;
+            letter-spacing: -1px;
+            font-family: "GT America";
+
+            @media #{$tablet} {
+                font-size: 18px;
+                line-height: 26px;
+            }
+
+            @media #{$phone} {
+                font-size: 24px;
+                line-height: 35px;
+            }
+        }
+    }
+
+    &-button {
+        display: flex;
+        width: 100%;
+
+        @media #{$phone} {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    }
+}

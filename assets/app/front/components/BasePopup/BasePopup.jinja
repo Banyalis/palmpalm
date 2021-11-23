@@ -1,0 +1,9 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+<div class="BasePopup {% block popupClass %}{% endblock %}">
+    <div class="BasePopup-wrapper">
+        <div class="BasePopup-content">
+            {% block popupContent %}{% endblock %}
+        </div>
+    </div>
+</div>

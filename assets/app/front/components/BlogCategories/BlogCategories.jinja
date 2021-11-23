@@ -1,0 +1,36 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro BlogCategories(data={}, mods={}) %}
+    <div class="BlogCategories" data-scroll="normal" data-scroll-offset="0">
+        <div class="BlogCategories-wrapper grid-container">
+            <div class="BlogCategories-list">
+                {% for item in data.list %}
+                    <a href="{{ item.url }}" class="BlogCategories-listItem u-skipUrlParser {{ item.type }}">
+                        <div class="BlogCategories-listItemImage {{ item.type }}">
+                            {% if item.typeRound %}
+                                <div class="BlogCategories-listItemImage-type"><span>{{ item.typeRound }}</span></div>
+                            {% endif %}
+                            <picture>
+                                <source data-srcset="{{ item.image }}, {{ item.image2x }} 2x">
+                                <img data-lazy data-src="{{ item.image }}" alt="">
+                            </picture>
+                        </div>
+                        {% if item.type != 'large' %}
+                            <div class="BlogCategories-listItemInner">
+                                <div class="BlogCategories-listItemDate">{{ item.date }}</div>
+                                <div class="BlogCategories-listItemPost">{{ data.posted }} <span>{{ item.post|safe }}</span></div>
+                            </div>
+                        {% endif %}
+                        <div class="BlogCategories-listItemTitle">{{ item.title|safe }}</div>
+                        {% if item.type == 'large' %}
+                            <div class="BlogCategories-listItem-logo">
+                                {% call macros.svgSprite("hero-logo-bottle") %}{% endcall %}
+                                {% call macros.svgSprite("blog-logo-text") %}{% endcall %}
+                            </div>
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endmacro %}

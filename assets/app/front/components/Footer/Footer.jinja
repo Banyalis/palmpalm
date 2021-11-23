@@ -1,0 +1,25 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% from 'front/components/Common/CommonSocial/CommonSocial.jinja' import CommonSocial %}
+
+<footer class="Footer NeedFixOnPopup">
+    <div class="Footer-inner">
+        <div class="Footer-title">{{ footer.title }}</div>
+        <div class="Footer-contacts">
+            <a href="tel: {{ footer.phone }}" class="Footer-contactsItem">{{ footer.phone }}</a>
+            <a href="mailto: {{ footer.email }}" class="Footer-contactsItem">{{ footer.email }}</a>
+        </div>
+        <nav class="Footer-nav">
+            {% for item in footer.nav %}
+                <a href="{{ item.url }}" class="Footer-navItem">{{ item.title }}</a>
+            {% endfor %}
+        </nav>
+        {{ CommonSocial(social, mods=['footer']) }}
+        <div class="Footer-copyright">{{ footer.copyright }}</div>
+        <div class="Footer-nav Footer-nav--secondary">
+            {% for item in footer.links %}
+                <a href="{{ item.url }}" class="Footer-navItem">{{ item.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</footer>

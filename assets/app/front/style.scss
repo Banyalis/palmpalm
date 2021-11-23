@@ -1,0 +1,640 @@
+@import "reset.css";
+@import "fonts";
+@import "const";
+
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: transparent;
+    overflow-y: scroll;
+
+    //disable double tap zoom
+    //so fastclick is no more needed (it caused bugs with input labels clicks and others)
+    touch-action: manipulation;
+}
+
+
+html.no-transition * {
+    transition: none !important;
+}
+
+body {
+    font-family: 'Matter SQ', Helvetica, sans-serif;
+
+    position: relative;
+
+    text-decoration-skip: ink;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern";
+    -moz-font-feature-settings: "kern=1";
+    -moz-font-feature-settings: "kern";
+    -ms-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern";
+
+    font-variant-numeric: normal;
+
+    word-wrap: break-word;
+    color: $c-color-primary;
+}
+
+
+input, button, textarea {
+    font-family: 'Matter SQ TRIAL', Helvetica, sans-serif;
+}
+
+
+input::-webkit-contacts-auto-fill-button { // safari contact icon
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+// ::-webkit-credentials-auto-fill-button { // safari password icon
+//     visibility: hidden;
+//     pointer-events: none;
+//     position: absolute;
+//     right: 0;
+// }
+
+input::-ms-clear { //ms clear icon
+    display: none !important;
+}
+
+input::-ms-reveal { //ms show password icon
+    display: none !important;
+}
+
+
+button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    outline: none;
+    border-radius: 0;
+    cursor: pointer;
+
+    line-height: normal;
+
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-appearance: none;
+
+    &::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+}
+
+
+//fix safari svg clip
+svg {
+    overflow: visible;
+}
+
+
+.FixedOnPopup {
+    position: fixed !important;
+    left: 0 !important;
+    width: 100% !important;
+}
+
+// Font sizes
+
+.c-header-h1 {
+    font-size: 96px;
+    line-height: 121px;
+    letter-spacing: -0.03em;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$tablet} {
+        font-size: 72px;
+        line-height: 91px;
+    }
+
+    @media #{$phone} {
+        font-size: 52px;
+        line-height: 65px;
+    }
+}
+
+.c-header-h2 {
+    font-size: 80px;
+    line-height: 80px;
+    letter-spacing: -0.04em;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$tablet}, #{$phone} {
+        letter-spacing: -2px;
+    }
+
+    @media #{$tablet} {
+        font-size: 52px;
+        line-height: 52px;
+    }
+
+    @media #{$phone} {
+        font-size: 42px;
+        line-height: 50px;
+    }
+}
+
+.c-header-h3 {
+    font-size: 62px;
+    line-height: 72px;
+    letter-spacing: -0.04em;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$tablet} {
+        font-size: 52px;
+        line-height: 62px;
+    }
+
+    @media #{$phone} {
+        font-size: 30px;
+        line-height: 36px;
+        letter-spacing: -1.6px;
+    }
+}
+
+.c-header-h4 {
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: -2px;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$tablet}, #{$phone} {
+        letter-spacing: -1px;
+    }
+
+    @media #{$tablet} {
+        font-size: 32px;
+        line-height: 37px;
+    }
+
+    @media #{$phone} {
+        font-size: 24px;
+        line-height: 29px;
+    }
+}
+
+.c-header-h5 {
+    font-size: 28px;
+    line-height: 39px;
+    letter-spacing: -1px;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$tablet}, #{$phone} {
+        font-size: 20px;
+    }
+
+    @media #{$tablet} {
+        line-height: 28px;
+    }
+
+    @media #{$phone} {
+        line-height: 26px;
+        letter-spacing: -.32px;
+    }
+}
+
+.c-header-h6 {
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: -.6px;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$phone} {
+        font-size: 18px;
+        line-height: 30px;
+        letter-spacing: -.4px;
+    }
+}
+
+.c-header-h7 {
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: -.4px;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$tablet} {
+        line-height: 30px;
+    }
+
+    @media #{$phone} {
+        font-size: 13px;
+        line-height: 18px;
+        letter-spacing: -.2px;
+    }
+}
+
+.c-product-name {
+    font-size: 48px;
+    line-height: 52px;
+    letter-spacing: -2px;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$tablet}, #{$phone} {
+        font-size: 24px;
+        line-height: 26px;
+        letter-spacing: -1px;
+    }
+}
+
+.c-price-product-page {
+    font-size: 32px;
+    line-height: 48px;
+    letter-spacing: -2.4px;
+    font-weight: 500;
+    font-family: "GT America";
+
+    @media #{$tablet}, #{$phone} {
+        letter-spacing: -1.4px;
+    }
+
+    @media #{$tablet} {
+        font-size: 24px;
+        line-height: 29px;
+    }
+
+    @media #{$phone} {
+        font-size: 20px;
+        line-height: 24px;
+    }
+}
+
+.c-price-card {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -1.2px;
+    font-weight: 500;
+    font-family: "GT America";
+}
+
+.c-price-checkout {
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -.5px;
+    font-weight: normal;
+    font-family: "GT America";
+
+    @media #{$tablet} {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    @media #{$phone} {
+        font-size: 16px;
+        line-height: 23px;
+        letter-spacing: -.4px;
+    }
+}
+
+.c-price-checkout-subtotal {
+    font-size: 28px;
+    line-height: 41px;
+    letter-spacing: -1px;
+    font-weight: normal;
+    font-family: "GT America";
+
+    @media #{$tablet} {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    @media #{$phone} {
+        font-size: 24px;
+        line-height: 35px;
+    }
+}
+
+.c-label {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -.2px;
+    font-weight: bold;
+    font-family: "GT America";
+
+    @media #{$tablet}, #{$phone} {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: -.4px;
+    }
+}
+
+.c-button {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -.2px;
+    font-weight: 500;
+    font-family: "GT America";
+
+    @media #{$tablet}, #{$phone} {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: -.4px;
+    }
+}
+
+.c-body-text {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -.5px;
+    font-weight: normal;
+
+    @media #{$tablet}, #{$phone} {
+        font-size: 18px;
+        line-height: 30px;
+    }
+}
+
+.c-icons {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -1px;
+    font-weight: 500;
+}
+
+.c-header-footer {
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 500;
+
+    @media #{$tablet}, #{$phone} {
+        letter-spacing: -.4px;
+    }
+
+    @media #{$phone} {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+.c-big-description {
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: -.5px;
+    font-weight: normal;
+
+    @media #{$tablet} {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    @media #{$phone} {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+.c-small-label {
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: -.5px;
+    font-weight: normal;
+}
+
+.c-small-description {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: normal;
+}
+
+.c-tiny-text {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+}
+
+// Buttons
+
+.c-button-primary {
+    justify-content: center;
+    padding: 11px 49px 13px;
+    border-radius: 12px;
+    background-color: $c-color-secondary;
+    overflow: hidden;
+    position: relative;
+    color: $c-color-white;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -.2px;
+    font-weight: 500;
+    font-family: "GT America";
+
+    @media #{$tablet}, #{$phone} {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: -.4px;
+    }
+
+    &:before, &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        transition: opacity $c-ease-primary
+    }
+
+    &:before {
+        background: linear-gradient(344.38deg, #f3805e 7.74%, #f26a42 72.78%);
+    }
+
+    &:after {
+        background: linear-gradient(0deg, rgba($c-color-black, .1), rgba($c-color-black, .1)), linear-gradient(344.38deg, #f3805e 7.74%, #f26a42 72.78%);
+    }
+
+    span {
+        position: relative;
+        z-index: 10;
+    }
+
+    .isDesktop &:hover:before {
+        opacity: 1;
+    }
+
+    &:active:after {
+        opacity: 1;
+    }
+
+    &:disabled {
+        background-color: rgba($c-color-purple, .2);
+        pointer-events: none;
+        color: rgba($c-color-purple, .5);
+    }
+}
+
+.c-button-round {
+    display: block;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid $c-color-secondary;
+    margin: 0 auto;
+    transition: background-color $c-ease-primary, border $c-ease-primary;
+
+    @media #{$phone} {
+        width: 112px;
+        height: 112px;
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        font-family: "GT America";
+        letter-spacing: -.4px;
+        color: $c-color-secondary;
+        transition: color $c-ease-animate;
+
+        @media #{$phone} {
+            font-size: 14px;
+            line-height: 21px;
+        }
+    }
+
+    .isDesktop &:hover {
+        background-color: $c-color-secondary;
+        border: 2px solid transparent;
+
+        span {
+            color: $c-color-white;
+        }
+    }
+}
+
+// Checkbox
+
+.c-checkbox {
+    $root:&;
+
+    display: flex;
+    align-items: center;
+
+    &-label {
+        position: relative;
+        cursor: pointer;
+
+        &:before {
+            content: "";
+            display: block;
+            width: 24px;
+            height: 24px;
+            border: 2px solid $c-color-tertiary;
+            border-radius: 5px;
+            transition: background-color $c-ease-primary;
+        }
+
+        svg {
+            position: absolute;
+            top: 50%;
+            left: 6px;
+            width: 12px;
+            height: 8px;
+            margin-top: -4px;
+            opacity: 0;
+            transition: opacity $c-ease-primary;
+        }
+
+        .isDesktop &:hover:before {
+            background-color: rgba($c-color-tertiary, .08);
+        }
+    }
+
+    &-input {
+        display: none;
+
+        &:checked + #{$root}-label {
+            &:before {
+                background-color: $c-color-tertiary;
+            }
+
+            svg {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.grid-container {
+    position: relative;
+    margin: 0 auto;
+
+    //desktop
+    @media (min-width: 1600px) {
+        width: 1600px - 260px;
+    }
+    @media (min-width: 1440px) and (max-width: 1599px) {
+        width: calc(100% - 260px);
+    }
+
+    //tablet
+    @media (min-width: 1120px) and (max-width: 1439px) {
+        width: 1120px - 48px;
+    }
+    @media (min-width: 768px) and (max-width: 1119px) {
+        width: calc(100% - 48px);
+    }
+
+    //phone
+    @media (min-width: 640px) and (max-width: 767px) {
+        width: 640px - 32px;
+    }
+    @media (max-width: 639px) {
+        width: calc(100% - 32px);
+    }
+
+    &.homepage {
+        @media (min-width: 1600px) {
+            width: 1600px - 160px;
+        }
+
+        @media (min-width: 1440px) and (max-width: 1599px) {
+            width: calc(100% - 160px);
+        }
+    }
+
+    &.product {
+        @media (min-width: 1600px) {
+            width: 1600px - 370px;
+        }
+
+        @media (min-width: 1440px) and (max-width: 1599px) {
+            width: calc(100% - 80px);
+        }
+    }
+}

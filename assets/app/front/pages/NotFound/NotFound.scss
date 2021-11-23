@@ -1,0 +1,9 @@
+@import "const";
+@import "utils";
+
+.NotFound {
+    $root:&;
+
+    display: block; //for ie
+
+}

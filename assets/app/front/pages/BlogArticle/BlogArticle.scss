@@ -1,0 +1,10 @@
+@import "const";
+@import "utils";
+
+.BlogArticle {
+    $root:&;
+
+    &-contentWrapper {
+        overflow: hidden;
+    }
+}

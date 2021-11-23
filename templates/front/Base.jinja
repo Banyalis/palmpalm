@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru" class="no-transition">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=375, maximum-scale=3.0, minimum-scale=0.85, initial-scale=0.85" />
+
+    <link href="{{ static(bundle('front', 'front', 'main.css')) }}" rel="stylesheet">
+
+    <script>
+        (function() {
+            var size;
+
+            if (window.matchMedia("(orientation: portrait)").matches) {
+               size = window.screen.width;
+            }
+
+            if (window.matchMedia("(orientation: landscape)").matches) {
+               size = window.screen.height;
+            }
+
+            if (size >= 375) {
+                document.getElementById('viewport').setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=3.0, minimum-scale=1');
+            } else {
+
+            }
+        })();
+    </script>
+
+    <script>
+        if (history.scrollRestoration) {
+          history.scrollRestoration = 'manual';
+        }
+
+        var positionStickySupport = function() {
+            var el = document.createElement('a');
+            var mStyle = el.style;
+
+            mStyle.cssText = "position:sticky;position:-webkit-sticky;position:-ms-sticky;";
+
+            return mStyle.position.indexOf('sticky') !== -1;
+        }();
+
+
+        var isMac = window.navigator.userAgent.indexOf('Mac') != -1;
+        var ieLTE10 = ( !!window.ActiveXObject && +( /msie\s(\d+)/i.exec( navigator.userAgent )[1] ) ) || NaN;
+        var ie11 = navigator.userAgent.indexOf('Trident/') != -1 && (navigator.userAgent.indexOf('rv:') != -1 || navigator.appName.indexOf('Netscape') != -1);
+        var isIE = ieLTE10 || ie11;
+        var isEdge = /Edge\/\d./i.test(navigator.userAgent);
+        var isSafari = navigator.userAgent.indexOf('Safari') != -1 && (navigator.userAgent.indexOf('Mac') != -1 || navigator.userAgent.indexOf('Windows')) && navigator.userAgent.indexOf('Chrome') == -1
+        var isFF = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+
+        var elem = document.createElement('canvas');
+        var hasWebpSupport = false;
+        if (!!(elem.getContext && elem.getContext('2d'))) {
+            hasWebpSupport = elem.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+        }
+
+        var isMobile = window.matchMedia('(hover: none)').matches;
+
+        window.app = {
+            data: {},
+            cache: {},
+            state: {},
+            settings: {
+                staticUrl: '{{ STATIC_URL }}',
+                mediaUrl: '{{ MEDIA_URL }}',
+                isDesktop: !isMobile,
+                isMobile: isMobile,
+                isSafari: isSafari,
+                urls: {},
+                isIE: isIE,
+                isEdge: isEdge,
+                isFF: isFF,
+                hasWebpSupport: hasWebpSupport,
+                animationDuration: 1000,
+                animationDelay: 70
+            }
+        };
+
+        document.documentElement.className += ' ' + (positionStickySupport ? 'isSticky' : 'isNotSticky');
+        document.documentElement.className += ' ' + (isMac ? 'isMac' : 'isNotMac');
+        document.documentElement.className += ' ' + (isEdge ? 'isEdge' : 'isNotEdge');
+        document.documentElement.className += ' ' + (isIE ? 'isIE' : 'isNotIE');
+        document.documentElement.className += ' ' + (isFF ? 'isFF' : 'isNotFF');
+        document.documentElement.className += ' ' + (!isMobile ? 'isDesktop' : 'isMobile');
+    </script>
+
+    <title>{% block title %}PalmPalm{% endblock %}</title>
+
+    <meta name="keywords" content=""/>
+    <meta name="description" content="{% block description %}PalmPalm Description{% endblock %}"/>
+    <meta name="format-detection" content="telephone=no">
+
+    {% block social %}
+        <meta property="og:type" content="website"/>
+        {% if OG and OG.image and OG.image.url %}
+            <meta property="og:image" content="{{ OG.image.url }}"/>
+            <meta property="og:image:width" content="{{ OG.image.width or 1200 }}"/>
+            <meta property="og:image:height" content="{{ OG.image.height or 630 }}"/>
+        {% elif OG and OG.image != False %}
+            <meta property="og:image" content="{{ static('img/logo-share-large.png') }}"/>
+            <meta property="og:image:width" content="1200"/>
+            <meta property="og:image:height" content="630"/>
+        {% elif not OG %}
+            <meta property="og:image" content="{{ static('img/logo-share-large.png') }}"/>
+            <meta property="og:image:width" content="1200"/>
+            <meta property="og:image:height" content="630"/>
+        {% endif %}
+        <meta property="og:url" content="{{ request.build_absolute_uri() }}">
+        <meta property="og:title" content="{% if OG and OG.title %}{{ OG.title }}{% else %}PalmPalm{% endif %}"/>
+        <meta property="og:description" content="{% if OG and 'description' in OG %}{{ OG.description }}{% else %}PalmPalm Description{% endif %}"/>
+    {% endblock %}
+
+    <meta name="csrf-token" content="{{ csrf_token }}">
+
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ static('favicon/apple-touch-icon-57x57.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ static('favicon/apple-touch-icon-114x114.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ static('favicon/apple-touch-icon-72x72.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ static('favicon/apple-touch-icon-144x144.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ static('favicon/apple-touch-icon-120x120.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ static('favicon/apple-touch-icon-152x152.png') }}" />
+    <link rel="icon" type="image/png" href="{{ static('favicon/favicon-32x32.png') }}" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ static('favicon/favicon-16x16.png') }}" sizes="16x16" />
+    <meta name="application-name" content="PalmPalm"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="{{ static('favicon/mstile-144x144.png') }}" />
+    <meta name="theme-color" content="#FFFFFF">
+
+    {% block meta %}{% endblock %}
+    {% block meta_fragment %}{% endblock %}
+
+    {% block static %}
+    {% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<div style="display: none;">{{ svg_content('front.sprite.svg') }}</div>
+
+{% block before_content %}{% endblock %}
+
+<div class="Content">
+    {% if page != 'checkout' %}
+        {% block Header %}
+            {% include 'front/components/Header/Header.jinja' %}
+        {% endblock %}
+
+        {% block MenuPopup %}
+            {% include 'front/components/MenuPopup/MenuPopup.jinja' %}
+        {% endblock %}
+    {% endif %}
+
+    <div class="PopupLoader"></div>
+
+    <div class="Content-body">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+{% block after_content %}{% endblock %}
+
+{% if page != '404' and page != 'checkout' %}
+    {% include 'front/components/Footer/Footer.jinja' %}
+{% endif %}
+
+<script>
+    {% block data %}
+    {% endblock %}
+</script>
+
+{% block body %}
+{% endblock %}
+
+<script src="{{ static(bundle('front', 'front', 'main.js')) }}" async></script>
+
+{% if not DEBUG %}
+    {% include 'Analytics.jinja' %}
+{% endif %}
+
+</body>
+</html>

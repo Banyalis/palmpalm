@@ -1,0 +1,188 @@
+@import "const";
+@import "utils";
+
+.LoginPopup {
+    $root:&;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($c-color-black, .4);
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $c-ease-animate, visibility $c-ease-animate;
+
+    &-inner {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        width: 545px;
+        padding: 28px 40px 40px;
+        background-color: $c-color-white;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(100%);
+        transition: opacity $c-ease-animate, visibility $c-ease-animate, transform $c-ease-animate;
+
+        @media #{$phone} {
+            left: 0;
+            width: 100%;
+            padding: 22px 16px;
+        }
+    }
+    
+    &-header {
+        position: absolute;
+        top: 28px;
+        left: 40px;
+        right: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media #{$phone} {
+            top: 22px;
+            left: 16px;
+            right: 16px;
+        }
+    }
+
+    &-title {
+        font-size: 28px;
+        line-height: 39px;
+        letter-spacing: -1px;
+        font-weight: bold;
+        font-family: "GT America";
+
+        @media #{$phone} {
+            font-size: 20px;
+            line-height: 26px;
+            letter-spacing: -.3px;
+        }
+    }
+
+    &-close {
+        width: 24px;
+        height: 24px;
+
+        .isDesktop &:hover svg {
+            stroke: $c-color-tertiary;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            stroke: $c-color-primary;
+            stroke-width: 2px;
+            stroke-linecap: round;
+            transition: stroke $c-ease-primary;
+        }
+    }
+
+    &-form {
+        width: 100%;
+
+        &Title {
+            margin-bottom: 40px;
+            font-size: 20px;
+            line-height: 25px;
+            letter-spacing: -.6px;
+            font-weight: bold;
+            font-family: "GT America";
+
+            @media #{$phone} {
+                margin-bottom: 32px;
+                font-size: 16px;
+                line-height: 20px;
+                letter-spacing: -.3px;
+            }
+        }
+
+        &Inner {
+            margin-bottom: 24px;
+
+            @media #{$tablet} {
+                margin-bottom: 16px;
+            }
+    
+            @media #{$phone} {
+                margin-bottom: 18px;
+            }
+        }
+
+        &Control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            font-size: 14px;
+            line-height: 20px;
+    
+            @media #{$phone} {
+                margin-bottom: 32px;
+            }
+
+            &Button {
+                color: $c-color-secondary;
+                transition: color $c-ease-primary;
+        
+                .isDesktop &:hover {
+                    color: $c-color-tertiary;
+                }
+            }
+        }
+
+        &Button {
+            display: flex;
+            width: 100%;
+        }
+
+        &Prompt {
+            display: flex;
+            justify-content: center;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: -.4px;
+            font-weight: 500;
+            font-family: "GT America";
+    
+            @media #{$phone} {
+                font-size: 14px;
+                line-height: 21px;
+            }
+    
+            &Title {
+                margin-right: 10px;
+            }
+    
+            &Link {
+                color: $c-color-secondary;
+                transition: color $c-ease-primary;
+    
+                .isDesktop &:hover {
+                    color: $c-color-tertiary;
+                }
+            }
+        }
+    }
+
+    .CommonInput {
+        margin-bottom: 16px;
+    }
+
+    .c-checkbox {
+        &-label:before {
+            margin-right: 12px;
+        }
+
+        &-caption {
+            color: #989fa9;
+        }
+    }
+}

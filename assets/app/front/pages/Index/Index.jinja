@@ -1,0 +1,34 @@
+{% extends 'front/pages/Section/Section.jinja' %}
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% block title %}{{ data.OG.title }}{% endblock %}
+
+{% block body_class %}IndexPage{% endblock %}
+
+{% from 'front/components/IndexHero/IndexHero.jinja' import IndexHero %}
+{% from 'front/components/IndexVideo/IndexVideo.jinja' import IndexVideo %}
+{% from 'front/components/IndexReviews/IndexReviews.jinja' import IndexReviews %}
+{% from 'front/components/IndexArticles/IndexArticles.jinja' import IndexArticles %}
+{% from 'front/components/IndexBrands/IndexBrands.jinja' import IndexBrands %}
+{% from 'front/components/IndexNews/IndexNews.jinja' import IndexNews %}
+{% from 'front/components/IndexFaq/IndexFaq.jinja' import IndexFaq %}
+
+{% block content %}
+    <main class="Section Index" data-meta-title="{{ data.OG.title }}">
+        <div class="Section-content">
+            {% block section_content %}
+            {% endblock %}
+        </div>
+        <div class="Index-content NeedFixOnPopup">
+            <div class="Index-contentWrapper">
+                {{ IndexHero(data=data.hero, social=social) }}
+                {{ IndexVideo(data=data.video) }}
+                {{ IndexReviews(data=data.reviews) }}
+                {{ IndexArticles(data=data.articles) }}
+                {{ IndexBrands(data=data.brands) }}
+                {{ IndexNews(data=data.news) }}
+                {{ IndexFaq(data=data.faq) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

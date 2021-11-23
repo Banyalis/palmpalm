@@ -1,0 +1,36 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% from 'front/components/ProductsPopup/ProductsPopup.jinja' import ProductsPopup %}
+
+<header class="Header">
+    <a href="/" class="Header-logo">
+        {% call macros.svgSprite("i-logo") %}{% endcall %}
+    </a>
+    <div class="Header-inner">
+        <nav class="Header-menu">
+            {% for item in header.menu %}
+                {% if item.dropdown == 'true' %}
+                    <div class="Header-menuItem">
+                        <button class="Header-menuItemButton">
+                            {{ item.title }}
+                            <div class="Header-menuItemButtonIcon">
+                                {% call macros.svgSprite("i-arrow-bottom") %}{% endcall %}
+                            </div>
+                        </button>
+                        {{ ProductsPopup(products) }}
+                    </div>
+                {% else %}
+                    <a href="{{ item.url }}" class="Header-menuItem">
+                        <div class="Header-menuItemIcon">
+                            {% call macros.svgSprite("i-" + item.icon) %}{% endcall %}
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </nav>
+        <button class="Header-burger">
+            <span class="Header-burgerLine"></span>
+            <span class="Header-burgerLine"></span>
+        </button>
+    </div>
+</header>

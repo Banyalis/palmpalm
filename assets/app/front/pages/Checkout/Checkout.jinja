@@ -1,0 +1,43 @@
+{% extends 'front/pages/Section/Section.jinja' %}
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% block title %}{{ data.OG.title }}{% endblock %}
+
+{% block body_class %}CheckoutPage{% endblock %}
+
+{% from 'front/components/CheckoutPayment/CheckoutPayment.jinja' import CheckoutPayment %}
+{% from 'front/components/CheckoutCard/CheckoutCard.jinja' import CheckoutCard %}
+{% from 'front/components/CheckoutOrder/CheckoutOrder.jinja' import CheckoutOrder %}
+
+{% block content %}
+    <main class="Section Checkout">
+        <div class="Section-content">
+            {% block section_content %}
+            {% endblock %}
+        </div>
+        <div class="Checkout-content NeedFixOnPopup">
+            <div class="Checkout-contentWrapper">
+                <div class="Checkout-contentInner">
+                    <div class="Checkout-header">
+                        <div class="Checkout-title">{{ data.title }}</div>
+                        <ul class="Checkout-breadcrumbs">
+                            {% for item in data.breadcrumbs %}
+                                <li class="Checkout-breadcrumbsItem">
+                                    {{ item.title }}
+                                    {% call macros.svgSprite("i-arrow-right") %}{% endcall %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <a href="/" class="Checkout-close">
+                            {% call macros.svgSprite("i-cross") %}{% endcall %}
+                        </a>
+                    </div>
+                    {{ CheckoutPayment(data=data.payment) }}
+                    {{ CheckoutCard(data=data.card) }}
+                    <p class="Checkout-alert">{{ data.alert }}</p>
+                </div>
+                {{ CheckoutOrder(data=data.order) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

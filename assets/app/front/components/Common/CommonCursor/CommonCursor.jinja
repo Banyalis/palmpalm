@@ -1,0 +1,14 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% macro CommonCursor(data={}, mods={}) %}
+    <div class="CommonCursor{% if mods['reviews'] %} CommonCursor--reviews{% endif %}">
+        <div class="CommonCursor-inner">
+            {% if mods['reviews'] %}
+                <div class="CommonCursor-prev">{{ data.prev }}</div>
+                <div class="CommonCursor-next">{{ data.next }}</div>
+            {% else %}
+                {{ data }}
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}

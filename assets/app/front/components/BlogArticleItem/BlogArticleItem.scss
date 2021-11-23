@@ -1,0 +1,175 @@
+@import "const";
+@import "utils";
+
+$c-local-color-gray: #989fa9;
+
+.BlogArticleItem {
+    $root: &;
+
+    position: relative;
+    color: $c-color-primary;
+
+    &-wrapper {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-gap: 0 40px;
+        margin-bottom: 191px;
+        z-index: 11;
+
+        @media #{$tablet}, #{$phone} {
+            grid-template-columns: repeat(1, 1fr);
+            margin-bottom: 80px;
+        }
+
+        blockquote {
+            font-weight: bold;
+            font-size: 62px;
+            line-height: 76px;
+            text-align: center;
+            letter-spacing: -2px;
+            font-family: "GT America";
+            margin-top: 128px;
+
+            @media #{$desktop} {
+                grid-column: 1 / span 12;
+            }
+
+            @media #{$tablet} {
+                font-size: 52px;
+                line-height: 62px;
+                margin-top: 64px;
+                padding: 0 25px;
+            }
+
+            @media #{$phone} {
+                font-size: 32px;
+                line-height: 40px;
+                margin-top: 56px;
+                padding: 0 15px;
+            }
+        }
+
+        span {
+            display: block;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing: -.4px;
+            color: $c-color-tertiary;
+            font-family: "GT America";
+            margin: 27px 0 5px;
+
+            @media #{$desktop} {
+                grid-column: 1 / span 12;
+            }
+
+            @media #{$tablet} {
+                margin: 30px 0 5px;
+            }
+
+            @media #{$phone} {
+                font-size: 13px;
+                line-height: 18px;
+                margin: 24px 0 5px;
+            }
+        }
+
+        span + p {
+            font-size: 18px;
+            line-height: 25px;
+            text-align: center;
+            letter-spacing: -.5px;
+            color: $c-local-color-gray;
+            font-family: "GT America";
+            margin-bottom: 120px;
+
+            @media #{$desktop} {
+                grid-column: 1 / span 12;
+            }
+
+            @media #{$tablet} {
+                margin-bottom: 64px;
+            }
+
+            @media #{$phone} {
+                font-size: 13px;
+                line-height: 18px;
+                margin-bottom: 56px;
+            }
+        }
+
+        picture {
+            @media #{$desktop} {
+                grid-column: 1 / span 12;
+                margin: 128px 0 109px;
+            }
+
+            @media #{$tablet} {
+                margin: 64px 0 58px;
+            }
+
+            @media #{$phone} {
+                margin: 56px 0 49px;
+            }
+        }
+
+        img {
+            width: 100%;
+        }
+
+        h4 {
+            font-weight: bold;
+            font-size: 28px;
+            line-height: 36px;
+            letter-spacing: -1px;
+            font-family: "GT America";
+            margin-bottom: 31px;
+
+            @media #{$desktop} {
+                grid-column: 3 / span 8;
+            }
+
+            @media #{$tablet} {
+                font-size: 20px;
+                line-height: 28px;
+                margin-bottom: 16px;
+            }
+
+            @media #{$phone} {
+                font-size: 20px;
+                line-height: 28px;
+                margin-bottom: 16px;
+            }
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 33px;
+            letter-spacing: -.5px;
+
+            @media #{$desktop} {
+                grid-column: 3 / span 8;
+            }
+
+            @media #{$tablet} {
+                font-size: 18px;
+                line-height: 30px;
+            }
+
+            @media #{$phone} {
+                font-size: 18px;
+                line-height: 30px;
+            }
+        }
+
+        p:empty {
+            margin-bottom: 32px;
+
+            @media #{$tablet}, #{$phone} {
+                margin-bottom: 16px;
+            }
+        }
+    }
+}

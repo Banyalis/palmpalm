@@ -1,0 +1,54 @@
+{% import 'front/utils/macros.jinja' as macros %}
+
+{% from 'front/components/Common/CommonCursor/CommonCursor.jinja' import CommonCursor %}
+
+{% macro IndexReviews(data={}) %}
+    <div class="IndexReviews">
+        <div class="grid-container">
+            <div class="IndexReviews-title">{{ data.title }}</div>
+        </div>
+        <div class="IndexReviews-slider">
+            <svg class="IndexReviews-sliderCircle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
+                <defs>
+                    <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textTop">
+                        <animateTransform attributeName="transform" begin="0s" dur="20s" type="rotate" from="0 250 250" to="180 250 250" repeatCount="indefinite">
+                    </path>
+                    <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textBottom">
+                        <animateTransform attributeName="transform" begin="0s" dur="20s" type="rotate" from="180 250 250" to="360 250 250" repeatCount="indefinite">
+                    </path>
+                </defs>
+                <text dy="1">
+                    <textPath xlink:href="#textTop">#palmpalmclean</textPath>
+                    <textPath xlink:href="#textBottom">#palmpalmclean</textPath>
+                </text>
+            </svg>
+            <div class="IndexReviews-sliderWrapper swiper-container">
+                <div class="swiper-wrapper">
+                    {% for item in data.list %}
+                        <div class="IndexReviews-sliderItem swiper-slide">
+                            <div class="IndexReviews-sliderItemInner">
+                                <div class="IndexReviews-sliderItemImage">
+                                    <picture>
+                                        <source srcset="{{ item.image }}, {{ item.image2x }} 2x">
+                                        <img src="{{ item.image }}" alt="">
+                                    </picture>
+                                </div>
+                                <div class="IndexReviews-sliderItemContent">
+                                    <div class="IndexReviews-sliderItemContentInner">
+                                        <p class="IndexReviews-sliderItemText">{{ item.text }}</p>
+                                        <div class="IndexReviews-sliderItemOwner">{{ item.owner }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="IndexReviews-sliderArea">
+                <div class="IndexReviews-sliderAreaPrev">Previous</div>   
+                <div class="IndexReviews-sliderAreaNext">Next</div>
+            </div>
+            {{ CommonCursor(data.cursor, mods={'reviews': true}) }}
+        </div>
+    </div>
+{% endmacro %}
